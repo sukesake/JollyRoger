@@ -25,8 +25,8 @@ public class MouseLook : MonoBehaviour {
 	public float minimumX = -360F;
 	public float maximumX = 360F;
 
-	public float minimumY = -60F;
-	public float maximumY = 60F;
+	public float minimumY = -30F;
+	public float maximumY = 30F;
 
 	float rotationY = 0F;
 
@@ -56,6 +56,7 @@ public class MouseLook : MonoBehaviour {
 	
 	void Start ()
 	{
+		Screen.showCursor = false;
 		// Make the rigid body not change rotation
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
