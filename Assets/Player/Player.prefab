@@ -259,13 +259,14 @@ GameObject:
   - 54: {fileID: 5400000}
   - 136: {fileID: 13600000}
   - 114: {fileID: 11400008}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100034
 GameObject:
   m_ObjectHideFlags: 1
@@ -495,7 +496,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -244.3423, y: 354.941193, z: -377.969482}
+  m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400014}
@@ -625,10 +626,11 @@ Animation:
   m_GameObject: {fileID: 100036}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400002, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
+  m_Animation: {fileID: 7400006, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
   m_Animations:
-  - {fileID: 7400002, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
+  - {fileID: 7400002, guid: eb19494c219b81c4cb94a64d537b33c3, type: 3}
   - {fileID: 7400004, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
+  - {fileID: 7400006, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -651,6 +653,17 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -60
   maximumY: 60
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf313dc52bbe30349853d493d31da1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -685,7 +698,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 1
+  m_Height: 2.16000009
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &13700000
@@ -728,8 +741,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 400010}
   m_AABB:
-    m_Center: {x: -.310874343, y: .000821053982, z: -.0193062425}
-    m_Extent: {x: 1.0382694, y: .403553486, z: .452214539}
+    m_Center: {x: -.309329897, y: -.00180752575, z: .00251197815}
+    m_Extent: {x: 1.02856028, y: .400924921, z: .406844079}
   m_DirtyAABB: 0
 --- !u!143 &14300000
 CharacterController:
