@@ -291,6 +291,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400014}
   - 111: {fileID: 11100000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -496,7 +497,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalPosition: {x: -338.38382, y: 355.010986, z: -446.90329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400014}
@@ -626,11 +627,11 @@ Animation:
   m_GameObject: {fileID: 100036}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400006, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
+  m_Animation: {fileID: 7400004, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
   m_Animations:
-  - {fileID: 7400002, guid: eb19494c219b81c4cb94a64d537b33c3, type: 3}
+  - {fileID: 7400002, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
   - {fileID: 7400004, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
-  - {fileID: 7400006, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
+  - {fileID: 7400004, guid: ab2c906b96fbd0545b18add86fa03e60, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -659,6 +660,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf313dc52bbe30349853d493d31da1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100036}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf313dc52bbe30349853d493d31da1ca, type: 3}
@@ -697,8 +709,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2.16000009
+  m_Radius: .400000006
+  m_Height: 2.1500001
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &13700000

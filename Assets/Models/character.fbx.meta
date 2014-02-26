@@ -59,8 +59,8 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk0
-      takeName: walk
+      name: jump
+      takeName: jump
       firstFrame: 0
       lastFrame: 59
       wrapMode: 0
