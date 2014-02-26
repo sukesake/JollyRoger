@@ -1138,6 +1138,38 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400032, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400032, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400032, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: ForwardSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: SidewaysSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: MaxSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: jumpHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: maxAirVelocityChange
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
   m_RootGameObject: {fileID: 1939291617}
@@ -5254,7 +5286,7 @@ Transform:
   m_GameObject: {fileID: 1939291617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -338.38382, y: 355.010986, z: -446.90329}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 728736115}
   - {fileID: 1591954949}
@@ -5272,9 +5304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ce563596789e64c885487eea9b75b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  ForwardSpeed: 12
+  SidewaysSpeed: 8
+  MaxSpeed: 12
   gravity: 10
   maxVelocityChange: 10
+  maxAirVelocityChange: .5
   canJump: 1
   jumpHeight: 2
   sensitivityX: 15
