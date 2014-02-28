@@ -2958,86 +2958,6 @@ Prefab:
   m_RootGameObject: {fileID: 360889960}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &405561813
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 405561818}
-  - 20: {fileID: 405561817}
-  - 92: {fileID: 405561816}
-  - 124: {fileID: 405561815}
-  - 81: {fileID: 405561814}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &405561814
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 405561813}
-  m_Enabled: 1
---- !u!124 &405561815
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 405561813}
-  m_Enabled: 1
---- !u!92 &405561816
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 405561813}
-  m_Enabled: 1
---- !u!20 &405561817
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 405561813}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
---- !u!4 &405561818
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 405561813}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1001 &405733310
 Prefab:
   m_ObjectHideFlags: 0
@@ -10293,12 +10213,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ce563596789e64c885487eea9b75b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  gravity: 10
-  maxVelocityChange: 10
-  canJump: 1
-  jumpHeight: 2
-  sensitivityX: 15
+  CanJump: 1
+  ForwardSpeed: 12
+  Gravity: 10
+  JumpHeight: 4
+  MaxAirVelocityChange: .5
+  MaxSpeed: 12
+  MaxVelocityChange: 10
+  SensitivityX: 15
+  SidewaysSpeed: 8
 --- !u!136 &1638918854
 CapsuleCollider:
   m_ObjectHideFlags: 0
