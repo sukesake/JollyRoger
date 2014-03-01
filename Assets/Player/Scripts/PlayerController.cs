@@ -72,16 +72,27 @@ public partial class PlayerController : MonoBehaviour
     private void PunchShit()
     {
         RaycastHit objectHit;
+
         // Shoot raycast
         if (Physics.Raycast(transform.position, transform.forward, out objectHit, 50))
         {
             //Debug.Log("Raycast hitted to: " + objectHit.collider);
             GameObject targetEnemy = objectHit.collider.gameObject;
+
+            Debug.DrawLine(start: transform.position, end: objectHit.point, color: Color.green,
+                    duration: 0.5f, depthTest: false); 
+
             if (targetEnemy.rigidbody != null)
             {
+                
                 targetEnemy.rigidbody.AddForce(7*(2*transform.forward + Vector3.up), ForceMode.VelocityChange);
                 Debug.Log("TargetEnemy: " + targetEnemy.name);
             }
+        }
+        else
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.forward * 50, color: Color.red,
+                   duration: 0.5f, depthTest: false); 
         }
     }
 
