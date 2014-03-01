@@ -1170,6 +1170,10 @@ Prefab:
       propertyPath: maxAirVelocityChange
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: JumpHeight
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
   m_RootGameObject: {fileID: 1939291617}
@@ -5304,15 +5308,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ce563596789e64c885487eea9b75b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanJump: 1
   ForwardSpeed: 12
-  SidewaysSpeed: 8
+  Gravity: 10
+  JumpHeight: 2
+  MaxAirVelocityChange: .5
   MaxSpeed: 12
-  gravity: 10
-  maxVelocityChange: 10
-  maxAirVelocityChange: .5
-  canJump: 1
-  jumpHeight: 2
-  sensitivityX: 15
+  MaxVelocityChange: 10
+  SensitivityX: 15
+  SidewaysSpeed: 8
 --- !u!136 &1939291620
 CapsuleCollider:
   m_ObjectHideFlags: 0
