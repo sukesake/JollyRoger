@@ -1,5 +1,4 @@
-﻿using System.Runtime.Remoting.Messaging;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof (Rigidbody))]
 [RequireComponent(typeof (CapsuleCollider))]
@@ -15,14 +14,12 @@ public partial class PlayerController : MonoBehaviour
     public float SensitivityX = 15F;
     public float SidewaysSpeed = 8.0f;
 
+    private bool _grounded;
+
     private Vector3 PlayerSpeed
     {
-        get
-        {
-            return new Vector3(ForwardSpeed, 0, SidewaysSpeed);
-        }
+        get { return new Vector3(ForwardSpeed, 0, SidewaysSpeed); }
     }
-    private bool _grounded;
 
 
     private void Awake()
@@ -34,8 +31,9 @@ public partial class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Calculate how fast we should be moving
-        var currentVelocity = rigidbody.velocity;
-        var targetVelocity = GetDirectionalInput().ScaleIt(PlayerSpeed).WorldSpaceIt(transform.rotation).ClampIt(MaxSpeed);
+        Vector3 currentVelocity = rigidbody.velocity;
+        Vector3 targetVelocity =
+            GetDirectionalInput().ScaleIt(PlayerSpeed).WorldSpaceIt(transform.rotation).ClampIt(MaxSpeed);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -44,7 +42,7 @@ public partial class PlayerController : MonoBehaviour
 
         if (_grounded)
         {
-            var velocityChange = (targetVelocity - currentVelocity).ClampIt(MaxVelocityChange, MaxVelocityChange, 0);
+            Vector3 velocityChange = (targetVelocity - currentVelocity).ClampIt(MaxVelocityChange, MaxVelocityChange, 0);
             rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
 
             if (CanJump && Input.GetButton("Jump"))
@@ -55,7 +53,8 @@ public partial class PlayerController : MonoBehaviour
         else
         {
             // Apply a force that attempts to reach our target velocity
-            var velocityChange = (targetVelocity - currentVelocity).ClampIt(MaxAirVelocityChange, MaxAirVelocityChange, 0);
+            Vector3 velocityChange = (targetVelocity - currentVelocity).ClampIt(MaxAirVelocityChange,
+                MaxAirVelocityChange, 0);
             rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
         }
 
@@ -68,10 +67,10 @@ public partial class PlayerController : MonoBehaviour
     }
 
 
-
     private void PunchShit()
     {
         RaycastHit objectHit;
+        Debug.Log("localEulerAngles: " + transform.localEulerAngles);
 
         // Shoot raycast
         if (Physics.Raycast(transform.position, transform.forward, out objectHit, 50))
@@ -79,20 +78,17 @@ public partial class PlayerController : MonoBehaviour
             //Debug.Log("Raycast hitted to: " + objectHit.collider);
             GameObject targetEnemy = objectHit.collider.gameObject;
 
-            Debug.DrawLine(start: transform.position, end: objectHit.point, color: Color.green,
-                    duration: 0.5f, depthTest: false); 
+            Debug.DrawLine(transform.position, objectHit.point, Color.green, 0.5f, false);
 
             if (targetEnemy.rigidbody != null)
             {
-                
                 targetEnemy.rigidbody.AddForce(7*(2*transform.forward + Vector3.up), ForceMode.VelocityChange);
                 Debug.Log("TargetEnemy: " + targetEnemy.name);
             }
         }
         else
         {
-            Debug.DrawLine(transform.position, transform.position + transform.forward * 50, color: Color.red,
-                   duration: 0.5f, depthTest: false); 
+            Debug.DrawLine(transform.position, transform.position + transform.forward * 50, Color.red, 0.5f, false);
         }
     }
 
