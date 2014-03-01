@@ -18,6 +18,7 @@ using System.Collections;
 public class MouseLook : MonoBehaviour 
 {
 	public GameObject target = null;
+	public GameObject targetReticle = null;
 
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
@@ -37,7 +38,7 @@ public class MouseLook : MonoBehaviour
 
 	void Update ()
 	{
-		if(target == null)
+		if(target == null || targetReticle == null)
 		{
 			return;
 		}
@@ -74,6 +75,8 @@ public class MouseLook : MonoBehaviour
 			}
 			
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+
+			targetReticle.transform.position = transform.position + transform.forward * 30;
 		}
 	}
 	

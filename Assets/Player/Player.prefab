@@ -585,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 100032}
+  targetReticle: {fileID: 0}
   axes: 2
   sensitivityX: 10
   sensitivityY: 10
