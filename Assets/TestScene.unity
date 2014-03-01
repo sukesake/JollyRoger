@@ -1140,15 +1140,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
       propertyPath: ForwardSpeed
@@ -1174,6 +1174,10 @@ Prefab:
       propertyPath: JumpHeight
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1939291617}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d325d16cd6ba61246b232f91d3b82691, type: 2}
   m_RootGameObject: {fileID: 1939291617}
@@ -4102,9 +4106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1939291617}
   axes: 2
   sensitivityX: 10
   sensitivityY: 10
+  distance: 10
+  offset: 5
   minimumX: 0
   maximumX: 360
   minimumY: -60
@@ -5290,7 +5297,7 @@ Transform:
   m_GameObject: {fileID: 1939291617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -338.38382, y: 355.010986, z: -446.90329}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 728736115}
   - {fileID: 1591954949}
