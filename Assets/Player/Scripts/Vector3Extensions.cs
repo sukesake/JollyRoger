@@ -9,6 +9,12 @@ public static class Vector3Extensions
         return sourceVector;
     }
 
+    public static Vector3 ScaleIt(this Vector3 sourceVector, float scale)
+    {
+        sourceVector.Scale(new Vector3(scale, scale, scale));
+        return sourceVector;
+    }
+
     public static Vector3 WorldSpaceIt(this Vector3 sourceVector, Quaternion transformRotation)
     {
         return transformRotation*sourceVector;
