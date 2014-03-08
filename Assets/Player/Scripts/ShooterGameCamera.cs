@@ -100,7 +100,7 @@ public class ShooterGameCamera : MonoBehaviour {
 		// Set the aimTarget position according to the distance we found.
 		// Make the movement slightly smooth.
 		aimTarget.position = cam.position + cam.forward * aimTargetDist;
-	    Debug.Log("cam: " + cam.position);
+
 	    AimSource.position = cam.position;
 	}
 	

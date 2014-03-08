@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 
 public class PlatformCharacterController : MonoBehaviour
@@ -87,6 +88,9 @@ public class PlatformCharacterController : MonoBehaviour
             {
                 targetEnemy.rigidbody.AddForce(aimDirection.ScaleIt(20) + Vector3.up.ScaleIt(7),
                     ForceMode.VelocityChange);
+                //normal take damage
+                objectHit.collider.SendMessage("TakeDamage", 52 ,SendMessageOptions.DontRequireReceiver);
+
             }
         }
     }

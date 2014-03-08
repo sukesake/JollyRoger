@@ -96,7 +96,7 @@ public partial class PlayerController : MonoBehaviour
     private void PunchShit()
     {
         RaycastHit objectHit;
-        Debug.Log("localEulerAngles: " + transform.localEulerAngles);
+
 
         // Shoot raycast
         if (Physics.Raycast(transform.position, transform.forward, out objectHit, 50))
@@ -109,7 +109,7 @@ public partial class PlayerController : MonoBehaviour
             if (targetEnemy.rigidbody != null)
             {
                 targetEnemy.rigidbody.AddForce(7*(2*transform.forward + Vector3.up), ForceMode.VelocityChange);
-                Debug.Log("TargetEnemy: " + targetEnemy.name);
+ 
             }
         }
         else

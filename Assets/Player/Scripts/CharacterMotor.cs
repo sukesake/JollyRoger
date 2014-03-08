@@ -32,7 +32,7 @@ public class CharacterMotor : MonoBehaviour
             _desiredMovementDirection = value;
             if (_desiredMovementDirection.magnitude > 1)
                 _desiredMovementDirection = _desiredMovementDirection.normalized;
-            Debug.Log("desired movedir: " + _desiredMovementDirection);
+         
         }
     }
 
@@ -59,7 +59,7 @@ public class CharacterMotor : MonoBehaviour
                     .normalized;
             float length = new Vector3(temp.x, 0, temp.z*zAxisEllipseMultiplier).magnitude*MaxSidewaysSpeed;
             Vector3 velocity = _desiredMovementDirection*length;
-            Debug.Log("desired Velocity: " + transform.rotation*velocity);
+   
             return transform.rotation*velocity;
         }
     }
