@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using UnityEngine;
 
 public class PlatformCharacterController : MonoBehaviour
@@ -9,7 +8,9 @@ public class PlatformCharacterController : MonoBehaviour
 
     public bool DefaultIsWalk = false;
     public float WalkMultiplier = 0.5f;
+    private Vector3 _airshipLastKnownPosition;
     private CharacterMotor _motor;
+    private Quaternion _airshipLastKnownRotation;
 
     private void Start()
     {
@@ -73,25 +74,62 @@ public class PlatformCharacterController : MonoBehaviour
     private void Shoot()
     {
         RaycastHit objectHit;
-        var aimDirection = (AimTarget.position - CameraTransform.position).normalized;
+        Vector3 aimDirection = (AimTarget.position - CameraTransform.position).normalized;
 
         //  Debug.DrawLine(raySourceLocation, targetLocation, Color.grey, 0.5f, false);
         Debug.DrawLine(transform.position, AimTarget.position, Color.green, 0.5f, false);
         // Shoot raycast
         if (Physics.Raycast(CameraTransform.position, aimDirection, out objectHit, 50))
         {
-            var targetEnemy = objectHit.collider.gameObject;
+            GameObject targetEnemy = objectHit.collider.gameObject;
 
             //TODO(pruett): implement a maybe monad to make these assertions a lot more fluent
             // targetEnemy.rigidbody.IfNotNull().Then().AddForce(aimDirection.ScaleIt(20) + Vector3.up.ScaleIt(7));
+
             if (targetEnemy.rigidbody != null)
             {
                 targetEnemy.rigidbody.AddForce(aimDirection.ScaleIt(20) + Vector3.up.ScaleIt(7),
                     ForceMode.VelocityChange);
                 //normal take damage
-                objectHit.collider.SendMessage("TakeDamage", 52 ,SendMessageOptions.DontRequireReceiver);
-
             }
+            objectHit.collider.SendMessage("TakeDamage", 52, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "platform")
+        {
+            _airshipLastKnownPosition = other.transform.position;
+            _airshipLastKnownRotation = other.transform.rotation;
+            Debug.Log("OMG I GOT ON A BOAT");
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "platform")
+        {
+            Vector3 airshipPositionChange = other.transform.position - _airshipLastKnownPosition;
+            var airshipRotationChange = other.transform.rotation* Quaternion.Inverse(_airshipLastKnownRotation);
+            Debug.Log("airshipPositionChange: " + airshipPositionChange);
+            _airshipLastKnownPosition = other.transform.position;
+            _airshipLastKnownRotation = other.transform.rotation;
+            transform.position += airshipPositionChange;
+            transform.rotation *= airshipRotationChange;
+
+            //   Debug.Log("OMG IM ON A BOAT");
+            //  transform.parent = other.transform;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "platform")
+        {
+            Debug.Log("im off the boat");
+            // transform.parent = null;
         }
     }
 }
