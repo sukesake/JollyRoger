@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: 673a1d32680def844b56e25b9e4d4be2
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Back_Axle
+    100002: Body
+    100004: Control_1
+    100006: Control_2
+    100008: Driver_s_seat
+    100010: Engine
+    100012: Hydrogen
+    100014: Landing_Gear
+    100016: Passenger_s_Seat
+    100018: Propellor
+    100020: Side_Ornament
+    100022: //RootNode
+    100024: Sphere
+    100026: Supports_for_body
+    100028: Web
+    100030: Windshield
+    400000: Back_Axle
+    400002: Body
+    400004: Control_1
+    400006: Control_2
+    400008: Driver_s_seat
+    400010: Engine
+    400012: Hydrogen
+    400014: Landing_Gear
+    400016: Passenger_s_Seat
+    400018: Propellor
+    400020: Side_Ornament
+    400022: //RootNode
+    400024: Sphere
+    400026: Supports_for_body
+    400028: Web
+    400030: Windshield
+    2300000: Back_Axle
+    2300002: Body
+    2300004: Control_1
+    2300006: Control_2
+    2300008: Driver_s_seat
+    2300010: Engine
+    2300012: Hydrogen
+    2300014: Landing_Gear
+    2300016: Passenger_s_Seat
+    2300018: Propellor
+    2300020: Side_Ornament
+    2300022: Sphere
+    2300024: Supports_for_body
+    2300026: Web
+    2300028: Windshield
+    3300000: Back_Axle
+    3300002: Body
+    3300004: Control_1
+    3300006: Control_2
+    3300008: Driver_s_seat
+    3300010: Engine
+    3300012: Hydrogen
+    3300014: Landing_Gear
+    3300016: Passenger_s_Seat
+    3300018: Propellor
+    3300020: Side_Ornament
+    3300022: Sphere
+    3300024: Supports_for_body
+    3300026: Web
+    3300028: Windshield
+    4300000: Passenger_s_Seat
+    4300002: Driver_s_seat
+    4300004: Windshield
+    4300006: Web
+    4300008: Side_Ornament
+    4300010: Back_Axle
+    4300012: Sphere
+    4300014: Landing_Gear
+    4300016: Control_2
+    4300018: Control_1
+    4300020: Propellor
+    4300022: Engine
+    4300024: Body
+    4300026: Supports_for_body
+    4300028: Hydrogen
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
