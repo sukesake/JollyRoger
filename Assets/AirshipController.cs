@@ -10,6 +10,8 @@ public class AirshipController : MonoBehaviour {
     public float verticalAimingSpeed = 270f;
     public float maxVerticalAngle = 80f;
     public float minVerticalAngle = -80f;
+    private const float _maxVelocity = 100;
+    private const float _maxVelocityChange = 3;
 
     // Use this for initialization
 	void Start () {
@@ -18,9 +20,16 @@ public class AirshipController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var thrustVector = new Vector3(-Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), -Input.GetAxis("Vertical"));
-	    Debug.Log("thrustVactor: " + thrustVector);
-        transform.rigidbody.AddForce(thrustVector.WorldSpaceIt(transform.rotation), ForceMode.VelocityChange);
+        Vector3 currentVelocity = rigidbody.velocity;
+        var thrustVector = new Vector3(-Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), -Input.GetAxis("Vertical")).WorldSpaceIt(transform.rotation).ScaleIt(_maxVelocity);
+	   // Debug.Log("thrustVactor: " + thrustVector);
+
+        Vector3 velocityChange = (thrustVector - currentVelocity);
+         Debug.Log("velocityChange: " + velocityChange);
+         velocityChange = velocityChange.ClampIt(_maxVelocityChange, _maxVelocityChange, _maxVelocityChange);
+       
+        //    rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+        transform.rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
 
         _angleH += Mathf.Clamp(Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal2"), -1, 1) * horizontalAimingSpeed * Time.deltaTime;
 
