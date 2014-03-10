@@ -12,12 +12,12 @@ SceneSettings:
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: .5, g: .5, b: .5, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_FogDensity: .00100000005
+  m_LinearFogStart: 100
+  m_LinearFogEnd: 600
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 991903770}
   m_GameObject: {fileID: 19396348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.8163567, y: 16.7914524, z: -15.684701}
+  m_LocalPosition: {x: 770.79425, y: 16.7914524, z: 1646.59558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 398406199}
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_DetailObjectDistance: 250
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1574
+  m_SplatMapDistance: 416
   m_HeightmapMaximumLOD: 0
   m_CastShadows: 1
   m_LightmapIndex: -1
@@ -805,7 +805,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400022, guid: 673a1d32680def844b56e25b9e4d4be2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.8163567
+      value: 770.79425
       objectReference: {fileID: 0}
     - target: {fileID: 400022, guid: 673a1d32680def844b56e25b9e4d4be2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -813,7 +813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400022, guid: 673a1d32680def844b56e25b9e4d4be2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.684701
+      value: 1646.59558
       objectReference: {fileID: 0}
     - target: {fileID: 400022, guid: 673a1d32680def844b56e25b9e4d4be2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1143,7 +1143,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 46fbee832a0879d4a8a6ad7aa60eb85f, type: 2}
       propertyPath: m_SplatMapDistance
-      value: 1574
+      value: 416
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46fbee832a0879d4a8a6ad7aa60eb85f, type: 2}
+      propertyPath: m_TreeDistance
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46fbee832a0879d4a8a6ad7aa60eb85f, type: 2}
