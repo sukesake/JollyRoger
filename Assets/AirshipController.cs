@@ -21,11 +21,12 @@ public class AirshipController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 currentVelocity = rigidbody.velocity;
-        var thrustVector = new Vector3(-Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), -Input.GetAxis("Vertical")).WorldSpaceIt(transform.rotation).ScaleIt(_maxVelocity);
+        var thrustVector = new Vector3(Input.GetAxis("Vertical"), Input.GetAxis("VerticalThrust"), -Input.GetAxis("Horizontal")).WorldSpaceIt(transform.rotation).ScaleIt(_maxVelocity);
 	   // Debug.Log("thrustVactor: " + thrustVector);
 
         Vector3 velocityChange = (thrustVector - currentVelocity);
-         Debug.Log("velocityChange: " + velocityChange);
+       // Debug.Log("input: " + KeyCode.LeftControl.ToString());
+       //  Debug.Log("velocityChange: " + velocityChange);
          velocityChange = velocityChange.ClampIt(_maxVelocityChange, _maxVelocityChange, _maxVelocityChange);
        
         //    rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
@@ -38,7 +39,9 @@ public class AirshipController : MonoBehaviour {
         _angleV = Mathf.Clamp(_angleV, minVerticalAngle, maxVerticalAngle);
 
         // Set aim rotation
-        Quaternion aimRotation = Quaternion.Euler(-_angleV, _angleH, 0);
+        var sway = (Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal2")) * -200 * Time.deltaTime;
+
+        Quaternion aimRotation = Quaternion.Euler(0, _angleH, -_angleV);
         Quaternion camYRotation = Quaternion.Euler(0, _angleH, 0);
         transform.localRotation = aimRotation;
 	}
