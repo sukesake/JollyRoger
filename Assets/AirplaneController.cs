@@ -17,6 +17,7 @@ public class AirplaneController : MonoBehaviour
     private float _liftFactor = 400;
 
     private float _speed = 0;
+    private float _gravity = 100;
 
 
 	// Use this for initialization
@@ -24,6 +25,7 @@ public class AirplaneController : MonoBehaviour
     {
         _oldVelocity = rigidbody.velocity.sqrMagnitude;
         rigidbody.inertiaTensor = new Vector3(16, 16, 16);
+        
 	}
 	
 	// Update is called once per frame
@@ -48,15 +50,16 @@ public class AirplaneController : MonoBehaviour
         
         rigidbody.AddTorque(torqueVector);
 
-	    if (_thrust >= 0)
-	    {
-	        var maxVelocity = 2000;
+	 //   if (_thrust >= 0)
+	  //  {
+	        var maxVelocity = 1000;
 
-            var thrustVector = ((new Vector3(_thrust, lift, 0).WorldSpaceIt(transform.rotation))- rigidbody.velocity).ScaleIt(15).ClampIt(maxVelocity, maxVelocity, maxVelocity);
+            var thrustVector = ((new Vector3(_thrust*5, _gravity, 0).WorldSpaceIt(transform.rotation))- rigidbody.velocity);
 	        Debug.Log("thrust: " + thrustVector);
             //rigidbody.AddRelativeForce(thrustVector);
             rigidbody.AddForce(thrustVector, ForceMode.Acceleration);
-	    }
+	 //   }
 
+        rigidbody.AddForce(new Vector3(0,-_gravity, 0), ForceMode.Acceleration);
     }
 }
