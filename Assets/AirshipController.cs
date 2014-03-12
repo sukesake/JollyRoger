@@ -13,6 +13,8 @@ public class AirshipController : MonoBehaviour {
     private const float _maxVelocity = 100;
     private const float _maxVelocityChange = 3;
 
+    
+
     // Use this for initialization
 	void Start () {
 	

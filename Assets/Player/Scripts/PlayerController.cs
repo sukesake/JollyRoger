@@ -55,41 +55,40 @@ public partial class PlayerController : MonoBehaviour
 
     private void FixedUpdateDepricated()
     {
-        return;
-        // Calculate how fast we should be moving
-        //Vector3 currentVelocity = rigidbody.velocity;
-        //Vector3 targetVelocity =
-        //    GetDirectionalInput().ScaleIt(PlayerSpeed).WorldSpaceIt(transform.rotation).ClampIt(MaxSpeed);
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    PunchShit();
-        //}
+       //  Calculate how fast we should be moving
+        Vector3 currentVelocity = rigidbody.velocity;
+      //  Vector3 targetVelocity = GetDirectionalInput().ScaleIt(PlayerSpeed).WorldSpaceIt(transform.rotation).ClampIt(MaxSpeed);
 
-        //if (_grounded)
-        //{
+        if (Input.GetMouseButtonDown(0))
+        {
+            PunchShit();
+        }
+
+        if (_grounded)
+        {
         //    Vector3 velocityChange = (targetVelocity - currentVelocity).ClampIt(MaxVelocityChange, MaxVelocityChange, 0);
-        //    rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+       //     rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
 
-        //    if (CanJump && Input.GetButton("Jump"))
-        //    {
-        //        rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);
-        //    }
-        //}
-        //else
-        //{
-        //    // Apply a force that attempts to reach our target velocity
+            if (CanJump && Input.GetButton("Jump"))
+            {
+                rigidbody.velocity = new Vector3(currentVelocity.x, CalculateJumpVerticalSpeed(), currentVelocity.z);
+            }
+        }
+        else
+        {
+            // Apply a force that attempts to reach our target velocity
         //    Vector3 velocityChange = (targetVelocity - currentVelocity).ClampIt(MaxAirVelocityChange,
-        //        MaxAirVelocityChange, 0);
-        //    rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-        //}
+      //          MaxAirVelocityChange, 0);
+      //      rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
 
-        //// We apply gravity manually for more tuning control
-        //rigidbody.AddForce(new Vector3(0, -Gravity*rigidbody.mass, 0));
+        // We apply gravity manually for more tuning control
+        rigidbody.AddForce(new Vector3(0, -Gravity*rigidbody.mass, 0));
 
-        //_grounded = false;
+        _grounded = false;
 
-        //transform.Rotate(0, Input.GetAxis("Mouse X")*SensitivityX, 0);
+        transform.Rotate(0, Input.GetAxis("Mouse X")*SensitivityX, 0);
     }
 
 
