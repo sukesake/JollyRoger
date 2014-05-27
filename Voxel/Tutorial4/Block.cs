@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tutorial4
 {
-    class Block
+    public class Block
     {
-
         public bool IsActive { get; set; }
 
-        private bool m_active;
-
-        private BlockType m_blockType;
-
+        public BlockType BlockType {get; set;}
     }
 }

@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tutorial4
 {
-    enum BlockType
+    public enum BlockType
     {
-        Default,
-        Grass,
-        Dirt,
-        Water,
-        Stone,
-        Wood,
-        Sand,
+        Empty,
+        Rock
     };
 }
