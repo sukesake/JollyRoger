@@ -54,7 +54,7 @@ namespace Tutorial4
                 //load font
                 SharpBatch font = new SharpBatch(device, "textfont.dds");
 
-                SharpMesh mesh = new Voxel(device).Mesh;
+               
                 //init shader
                 SharpShader shader = new SharpShader(device, "../../HLSL.txt",
                     new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
@@ -72,7 +72,7 @@ namespace Tutorial4
 
                 //init frame rate counter
                 fpsCounter.Reset();
-
+                SharpMesh mesh = new Voxel(device).Mesh;
                 //keyboard event
                 //change depth and rasterizer state
                 form.KeyDown += (sender, e) =>
@@ -181,6 +181,8 @@ namespace Tutorial4
 
                                 if (pointCloud[x][y][z].IsActive)
                                 {
+                                    
+                                 
                                     voxelCount++;
                                     var translation = new Vector3(x * 2f, y * 2f, z * 2f);
                                     world = Matrix.Translation(translation);

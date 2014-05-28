@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tutorial4
 {
-    public class Block
+    public struct Block
     {
         public bool IsActive { get; set; }
 

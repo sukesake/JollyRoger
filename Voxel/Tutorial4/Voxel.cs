@@ -38,39 +38,86 @@ namespace Tutorial4
             float height = 1.0f;
             float width = 1.0f;
 
+            //var topVerticies = new[] 
+            //    {
+            //        new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,1)),
+            //        new TexturedVertex(new Vector3( length, height, width),new Vector2(0,1)),
+            //        new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
+            //        new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
+            //    };
+
+            //var bottomVerticies = new[] 
+            //    {
+            //        new TexturedVertex(new Vector3(-length,-height ,width),new Vector2(1,1)),
+            //        new TexturedVertex(new Vector3( length,-height ,width),new Vector2(0,1)),
+            //        new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,0)),
+            //        new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,0)),
+            //    };
+
+            //var eastVerticies = new[] 
+            //    {
+            //        new TexturedVertex(new Vector3(-length,-height, width),new Vector2(0,1)),
+            //        new TexturedVertex(new Vector3(-length, height, width),new Vector2(0,0)),
+            //        new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
+            //        new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,1)),
+            //    };
+
+            //var westVerticies = new[] 
+            //    {
+            //        new TexturedVertex(new Vector3( length,-height, width),new Vector2(1,1)),
+            //        new TexturedVertex(new Vector3( length, height, width),new Vector2(1,0)),
+            //        new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
+            //        new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,1)),
+            //    };
+
+            //var northVerticies =  new[] 
+            //    {
+            //        new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,0)),
+            //        new TexturedVertex(new Vector3( length, height, width),new Vector2(0,0)),
+            //        new TexturedVertex(new Vector3( length,-height, width),new Vector2(0,1)),
+            //        new TexturedVertex(new Vector3(-length,-height, width),new Vector2(1,1)),
+            //    };
+
+            //var southVerticies = new[] 
+            //    {
+            //        new TexturedVertex(new Vector3(-length, height,-width),new Vector2(0,0)),
+            //        new TexturedVertex(new Vector3( length, height,-width),new Vector2(1,0)),
+            //        new TexturedVertex(new Vector3( length,-height,-width),new Vector2(1,1)),
+            //        new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(0,1))
+            //    };
+
             var vertices = new[] 
-            {
-                ////TOP
-                new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,1)),
-                new TexturedVertex(new Vector3( length, height, width),new Vector2(0,1)),
-                new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
-                new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
-                //BOTTOM                                         
-                new TexturedVertex(new Vector3(-length,-height ,width),new Vector2(1,1)),
-                new TexturedVertex(new Vector3( length,-height ,width),new Vector2(0,1)),
-                new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,0)),
-                new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,0)),
-                //LEFT                                            
-                new TexturedVertex(new Vector3(-length,-height, width),new Vector2(0,1)),
-                new TexturedVertex(new Vector3(-length, height, width),new Vector2(0,0)),
-                new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
-                new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,1)),
-                //RIGHT                                               
-                new TexturedVertex(new Vector3( length,-height, width),new Vector2(1,1)),
-                new TexturedVertex(new Vector3( length, height, width),new Vector2(1,0)),
-                new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
-                new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,1)),
-                //FRONT                                        
-                new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,0)),
-                new TexturedVertex(new Vector3( length, height, width),new Vector2(0,0)),
-                new TexturedVertex(new Vector3( length,-height, width),new Vector2(0,1)),
-                new TexturedVertex(new Vector3(-length,-height, width),new Vector2(1,1)),
-                //BACK                                               
-                new TexturedVertex(new Vector3(-length, height,-width),new Vector2(0,0)),
-                new TexturedVertex(new Vector3( length, height,-width),new Vector2(1,0)),
-                new TexturedVertex(new Vector3( length,-height,-width),new Vector2(1,1)),
-                new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(0,1))
-            };
+                {
+                    new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,1)),
+                    new TexturedVertex(new Vector3( length, height, width),new Vector2(0,1)),
+                    new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
+                    new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
+               
+                    new TexturedVertex(new Vector3(-length,-height ,width),new Vector2(1,1)),
+                    new TexturedVertex(new Vector3( length,-height ,width),new Vector2(0,1)),
+                    new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,0)),
+                    new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,0)),
+               
+                    new TexturedVertex(new Vector3(-length,-height, width),new Vector2(0,1)),
+                    new TexturedVertex(new Vector3(-length, height, width),new Vector2(0,0)),
+                    new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
+                    new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,1)),
+               
+                    new TexturedVertex(new Vector3( length,-height, width),new Vector2(1,1)),
+                    new TexturedVertex(new Vector3( length, height, width),new Vector2(1,0)),
+                    new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
+                    new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,1)),
+              
+                    new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,0)),
+                    new TexturedVertex(new Vector3( length, height, width),new Vector2(0,0)),
+                    new TexturedVertex(new Vector3( length,-height, width),new Vector2(0,1)),
+                    new TexturedVertex(new Vector3(-length,-height, width),new Vector2(1,1)),
+               
+                    new TexturedVertex(new Vector3(-length, height,-width),new Vector2(0,0)),
+                    new TexturedVertex(new Vector3( length, height,-width),new Vector2(1,0)),
+                    new TexturedVertex(new Vector3( length,-height,-width),new Vector2(1,1)),
+                    new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(0,1))
+                };
 
             Mesh = SharpMesh.Create<TexturedVertex>(device, vertices, indices);
         }
