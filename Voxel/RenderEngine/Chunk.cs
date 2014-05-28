@@ -1,9 +1,10 @@
 using Game;
 using SharpDX;
 using SharpDX.Direct3D;
-using SharpDX.Direct3D10;
 using SharpDX.DXGI;
+using SharpDX.Toolkit.Graphics;
 using Buffer = SharpDX.Direct3D10.Buffer;
+using VertexBufferBinding = SharpDX.Direct3D10.VertexBufferBinding;
 
 namespace RenderEngine
 {
@@ -76,7 +77,7 @@ namespace RenderEngine
             IsGenerated = false;
         }
 
-        public void DrawChunk(SharpDX.Direct3D10.Device device, EffectPass pass)
+        public void DrawChunk(SharpDX.Direct3D10.Device device, SharpDX.Direct3D10.EffectPass pass)
         {
             device.InputAssembler.SetIndexBuffer(IndexBuffer, Format.R32_UInt, 0);
 

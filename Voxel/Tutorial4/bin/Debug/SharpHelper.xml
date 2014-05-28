@@ -147,6 +147,16 @@
             Weight
             </summary>
         </member>
+        <member name="M:SharpHelper.DeviceExtensions.SetDefaultRasterState(SharpDX.Direct3D11.Device)">
+            <summary>
+            Set current rasterizer state to default
+            </summary>
+        </member>
+        <member name="M:SharpHelper.DeviceExtensions.SetWireframeRasterState(SharpDX.Direct3D11.Device)">
+            <summary>
+            Set current rasterizer state to wireframe
+            </summary>
+        </member>
         <member name="T:SharpHelper.Skinning.AnimationManager">
             <summary>
             Animation Manager

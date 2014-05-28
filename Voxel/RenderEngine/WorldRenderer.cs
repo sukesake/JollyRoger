@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Configuration;
-using RenderEngine;
+using Game;
 using SharpDX;
 using SharpDX.D3DCompiler;
-using SharpDX.DXGI;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D10;
+using SharpDX.DXGI;
+using SharpDX.Toolkit.Graphics;
 using SharpDX.Windows;
+using DepthStencilState = SharpDX.Direct3D10.DepthStencilState;
 using Device = SharpDX.Direct3D10.Device;
 using DriverType = SharpDX.Direct3D10.DriverType;
+using Effect = SharpDX.Direct3D10.Effect;
+using EffectPass = SharpDX.Direct3D10.EffectPass;
+using RasterizerState = SharpDX.Direct3D10.RasterizerState;
 using Resource = SharpDX.Direct3D10.Resource;
+using Texture2D = SharpDX.Direct3D10.Texture2D;
 
-namespace Game
+namespace RenderEngine
 {
+
     public class WorldRenderer 
     {
         public static WorldRenderer Create()

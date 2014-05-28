@@ -5,37 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using RenderEngine;
 using SharpDX;
+using Device = SharpDX.Direct3D10.Device;
 
 namespace Game
 {
     public class World
     {
-        public WorldRenderer WorldRenderer { get; private set; }
+        public Device Device { get; private set; }
 
+
+        private readonly WorldRenderer _worldRenderer;
         private readonly Camera _camera;
         private readonly ChunkManager _chunkManager;
 
         public World(WorldRenderer worldRenderer, ChunkBuilder chunkbuilder)
         {
+   
             if (worldRenderer == null)
             {
                 throw new ArgumentNullException("worldRenderer");
             }
-            WorldRenderer = worldRenderer;
+
+
+
+            _worldRenderer = worldRenderer;
             _camera = new Camera();
             _camera.InitializeCamera(worldRenderer.WindowWidth, worldRenderer.WindowHeight, new Keyboard(), new Mouse(worldRenderer.WindowHandle));
             _chunkManager = new ChunkManager();
             _chunkManager.Initialize(_camera, chunkbuilder);
-
+            Device = _worldRenderer.Device;
         }
 
         public void Draw()
         {
-            WorldRenderer.BeginDraw();
+            _worldRenderer.BeginDraw();
 
-            WorldRenderer.DrawTerrain(_camera, _chunkManager.Values);
+            _worldRenderer.DrawTerrain(_camera, _chunkManager.Values);
 
-            WorldRenderer.EndDraw();
+    
+            _worldRenderer.EndDraw();
         }
 
         public void Update()

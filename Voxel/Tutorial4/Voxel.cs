@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using SharpDX;
-using SharpDX.Direct3D11;
-using SharpDX.DXGI;
-using SharpDX.Windows;
 using SharpHelper;
-
-using Buffer11 = SharpDX.Direct3D11.Buffer;
 
 namespace Tutorial4
 {
@@ -37,54 +28,6 @@ namespace Tutorial4
             float length = 1.0f;
             float height = 1.0f;
             float width = 1.0f;
-
-            //var topVerticies = new[] 
-            //    {
-            //        new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,1)),
-            //        new TexturedVertex(new Vector3( length, height, width),new Vector2(0,1)),
-            //        new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
-            //        new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
-            //    };
-
-            //var bottomVerticies = new[] 
-            //    {
-            //        new TexturedVertex(new Vector3(-length,-height ,width),new Vector2(1,1)),
-            //        new TexturedVertex(new Vector3( length,-height ,width),new Vector2(0,1)),
-            //        new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,0)),
-            //        new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,0)),
-            //    };
-
-            //var eastVerticies = new[] 
-            //    {
-            //        new TexturedVertex(new Vector3(-length,-height, width),new Vector2(0,1)),
-            //        new TexturedVertex(new Vector3(-length, height, width),new Vector2(0,0)),
-            //        new TexturedVertex(new Vector3(-length, height,-width),new Vector2(1,0)),
-            //        new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(1,1)),
-            //    };
-
-            //var westVerticies = new[] 
-            //    {
-            //        new TexturedVertex(new Vector3( length,-height, width),new Vector2(1,1)),
-            //        new TexturedVertex(new Vector3( length, height, width),new Vector2(1,0)),
-            //        new TexturedVertex(new Vector3( length, height,-width),new Vector2(0,0)),
-            //        new TexturedVertex(new Vector3( length,-height,-width),new Vector2(0,1)),
-            //    };
-
-            //var northVerticies =  new[] 
-            //    {
-            //        new TexturedVertex(new Vector3(-length, height, width),new Vector2(1,0)),
-            //        new TexturedVertex(new Vector3( length, height, width),new Vector2(0,0)),
-            //        new TexturedVertex(new Vector3( length,-height, width),new Vector2(0,1)),
-            //        new TexturedVertex(new Vector3(-length,-height, width),new Vector2(1,1)),
-            //    };
-
-            //var southVerticies = new[] 
-            //    {
-            //        new TexturedVertex(new Vector3(-length, height,-width),new Vector2(0,0)),
-            //        new TexturedVertex(new Vector3( length, height,-width),new Vector2(1,0)),
-            //        new TexturedVertex(new Vector3( length,-height,-width),new Vector2(1,1)),
-            //        new TexturedVertex(new Vector3(-length,-height,-width),new Vector2(0,1))
-            //    };
 
             var vertices = new[] 
                 {

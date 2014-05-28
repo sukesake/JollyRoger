@@ -4,7 +4,9 @@ using System.Threading;
 using System.Windows.Forms.VisualStyles;
 using Munq;
 using RenderEngine;
+using SharpDX.Direct3D10;
 using SharpDX.Windows;
+using SharpHelper;
 
 namespace Game
 {
@@ -24,7 +26,7 @@ namespace Game
             {
                 ThreadPool.QueueUserWorkItem(DrawLoop);
 
-                RenderLoop.Run(_world.WorldRenderer.RenderForm, UpdateLoop);
+                RenderLoop.Run(container.Resolve<WorldRenderer>().RenderForm, UpdateLoop);
             }
             finally
             {
@@ -32,7 +34,7 @@ namespace Game
             }
         }
 
-        private IocContainer Configure(IocContainer container)
+        private static IocContainer Configure(IocContainer container)
         {
             container.RegisterInstance<WorldRenderer>(WorldRenderer.Create());
             container.Register<ChunkBuilder>(r => new ChunkBuilder(container.Resolve<WorldRenderer>().Device));
