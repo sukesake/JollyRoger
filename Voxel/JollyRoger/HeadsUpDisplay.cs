@@ -30,12 +30,13 @@ namespace JollyRoger
         public void Update(string[] messages)
         {
             Resize();
-            _fpsCounter.Update();
             _messages = messages;
         }
 
         public void Draw()
         {
+            //updating the fpsCounter here may seem counterintuitive but we need to count based on the draw thread
+            _fpsCounter.Update();
             _batch.Begin();
             _batch.DrawString("FPS: " + _fpsCounter.FPS, 0, 0, Color.White);
             _batch.DrawString("Press W for wireframe, S for solid", 0, 30, Color.White);

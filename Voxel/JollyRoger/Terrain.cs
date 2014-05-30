@@ -59,7 +59,7 @@ namespace JollyRoger
             float ratio = 800f / 600f;
             Matrix projection = Matrix.PerspectiveFovLH(3.14F / 3.0F, ratio, 1, 1000);
             Matrix world = Matrix.Translation(0, 0, 0);
-            Matrix view = Matrix.LookAtLH(cameraLocation, new Vector3(0, 0, 0), Vector3.UnitY);
+            Matrix view = Matrix.LookAtLH(cameraLocation, new Vector3(_terrainWidth, 5, _terrainWidth), Vector3.UnitY);
 
             for (int x = 0; x < _terrainWidth; x++)
             {
