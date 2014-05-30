@@ -1,11 +1,10 @@
-using System;
 using System.Windows.Forms;
 using SharpDX;
 using SharpDX.Direct3D11;
 using SharpDX.Windows;
 using SharpHelper;
 
-namespace RenderEngine
+namespace JollyRoger
 {
     public class Camera
     {

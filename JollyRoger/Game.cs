@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using Munq;
-using RenderEngine;
 using SharpDX.Direct3D11;
 using SharpDX.Windows;
 using SharpHelper;

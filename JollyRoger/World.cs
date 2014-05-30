@@ -1,5 +1,4 @@
 ﻿using System;
-using RenderEngine;
 using SharpDX;
 using SharpDX.Toolkit.Graphics;
 using SharpDX.Windows;
