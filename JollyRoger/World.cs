@@ -37,7 +37,7 @@ namespace JollyRoger
             _device.UpdateAllStates();
             _device.Clear(Color.CornflowerBlue);
 
-            _terrain.Draw(_camera.GetPosition());
+            _terrain.Draw(_camera.ViewMatrix);
             _headsUpDisplay.Draw();
 
             _device.Present();

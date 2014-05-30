@@ -1,25 +1,22 @@
 using System;
-using SharpDX.DirectInput;
+using System.Windows.Forms;
+using SharpDX;
+using SharpDX.Windows;
+using SharpHelper;
 
 namespace JollyRoger
 {
     public class InputModule
     {
-        private readonly Keyboard _keyboard;
-        private readonly Mouse _mouse;
-
-        public InputModule(Keyboard keyboard, Mouse mouse)
+        public InputModule()
         {
-            if (keyboard == null) throw new ArgumentNullException("keyboard");
-            if (mouse == null) throw new ArgumentNullException("mouse");
-            
-            _keyboard = keyboard;
-            _mouse = mouse;
+
         }
 
-        public void GetMouseCoordinates()
+        public Point GetMousePosition()
         {
-            //return _mouse.
+            var position = Cursor.Position;
+            return new Point(position.X, position.Y);
         }
 
     }
