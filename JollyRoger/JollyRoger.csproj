@@ -76,6 +76,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Block.cs" />
@@ -107,6 +108,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Architecture\Architecture.csproj">
+      <Project>{9D3701FB-4824-4BBB-9271-A165F83AC834}</Project>
+      <Name>Architecture</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpHelper\SharpHelper.csproj">
       <Project>{EA6F422E-3D4F-499F-A76F-3DC366489387}</Project>
       <Name>SharpHelper</Name>

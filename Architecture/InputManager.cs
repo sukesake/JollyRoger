@@ -275,6 +275,7 @@ namespace Architecture
             _inputTriggerCallbacks[actionName].Event -= callback;
         }
 
+        [STAThread]
         public bool IsPressed(string actionName, int playerIndex = 0)
         {
             if (_nameToAction.ContainsKey(actionName))

@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Architecture;
-using FluentAssertions;
+﻿using FluentAssertions;
+using NUnit.Framework;
+using SharpDX.XInput;
+using System.Windows.Input;
 
 namespace Architecture.Tests
 {
-    using NUnit.Framework;
-    using SharpDX.XInput;
-using System.Windows.Input;
+
     [TestFixture]
     public class InputManagerTest
     {
-        InputManager _im = new InputManager();
+        readonly InputManager _im = new InputManager();
         private bool _pressed;
         private float _gamePadValue;
         private GamepadButtonFlags _expectedFlag;
