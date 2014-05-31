@@ -60,5 +60,10 @@ namespace Architecture
                 }
             }
         }
+
+        public void EndGame()
+        {
+            _game._end = true;
+        }
     }
 }

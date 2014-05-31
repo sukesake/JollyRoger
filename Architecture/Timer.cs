@@ -16,10 +16,12 @@ namespace Architecture
 
         public float Dt
         {
-            get 
-            {
-                return _cap / 1000.0f;
-            }
+            get { return _cap / 1000.0f; }
+        }
+
+        public float RealDt
+        {
+            get { return _dt; }
         }
 
         public Timer(float capInHz)

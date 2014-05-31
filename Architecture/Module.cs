@@ -9,7 +9,6 @@ namespace Architecture
     public abstract class Module
     {
         protected bool _active = true;
-        public int _index;
         public string _name;
 
         public Module()

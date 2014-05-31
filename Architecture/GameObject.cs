@@ -104,7 +104,8 @@ namespace Architecture
             GameObject go = new GameObject(Name, instance, Owner);
             foreach (var item in _components)
             {
-                Component c = item.Value.Clone(go);
+                Component c = item.Value.Clone();
+                go.AddComp(c);
             }
             return go;
         }

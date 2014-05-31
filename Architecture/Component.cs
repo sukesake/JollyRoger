@@ -88,6 +88,6 @@ namespace Architecture
 
         }
 
-        public abstract Component Clone(GameObject go);
+        public abstract Component Clone();
     }
 }
