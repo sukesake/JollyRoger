@@ -1,31 +1,26 @@
-﻿using SharpDX.XInput;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using SharpDX.XInput;
 
 namespace Architecture
 {
     public class InputManager : GameModule
     {
-        public delegate float InputValueDelegate(int playerIndex);
-
         public delegate void InputEventCallbackDelegate(int playerIndex, string actionName, float value);
 
-        readonly Dictionary<string, InputAction> _nameToAction = new Dictionary<string,InputAction>();
-        readonly Dictionary<InputAction, string> _actionToName = new Dictionary<InputAction, string>();
-        readonly Dictionary<InputAction, float> _prevFrameValues = new Dictionary<InputAction, float>();
-        readonly Dictionary<string, InputEvent> _inputTriggerCallbacks = new Dictionary<string, InputEvent>();
-        readonly List<InputAction> _allActions = new List<InputAction>();
+        public delegate float InputValueDelegate(int playerIndex);
 
-        readonly List<Controller> _controllers = new List<Controller>();
-        public InputAction InputAction { get; private set; }
+        private readonly Dictionary<InputAction, string> _actionToName = new Dictionary<InputAction, string>();
+        private readonly List<InputAction> _allActions = new List<InputAction>();
 
-        public InputManager(InputAction.GamePadButtonPressDelegate getGamePadButtonPressOverride = null, 
-                            InputAction.GamePadValueDelegate getGamePadValueOverride = null,
-                            KeyboardInputAction.GetKeyPressStateDelegate getKeyPressStateOverride = null)
+        private readonly List<Controller> _controllers = new List<Controller>();
+        private readonly Dictionary<string, InputEvent> _inputTriggerCallbacks = new Dictionary<string, InputEvent>();
+        private readonly Dictionary<string, InputAction> _nameToAction = new Dictionary<string, InputAction>();
+        private readonly Dictionary<InputAction, float> _prevFrameValues = new Dictionary<InputAction, float>();
+
+        public InputManager(InputAction.GamePadButtonPressDelegate getGamePadButtonPressOverride = null,
+            InputAction.GamePadValueDelegate getGamePadValueOverride = null,
+            KeyboardInputAction.GetKeyPressStateDelegate getKeyPressStateOverride = null)
         {
             InputAction = new InputAction(null, getGamePadButtonPressOverride, getGamePadValueOverride);
             InputAction.InitializeActions(this, getKeyPressStateOverride);
@@ -38,6 +33,8 @@ namespace Architecture
                 _allActions.Add(pair.Value);
             }
         }
+
+        public InputAction InputAction { get; private set; }
 
         private void RegisterControllers()
         {
@@ -77,7 +74,7 @@ namespace Architecture
             _actionToName.Add(action, actionName);
             _inputTriggerCallbacks.Add(actionName, new InputEvent());
         }
-        
+
         public override void Update(float dt)
         {
             foreach (var pair in _actionToName)
@@ -86,7 +83,7 @@ namespace Architecture
                 var name = pair.Value;
 
                 var value = action.GetPressValue();
-                if(!_prevFrameValues.ContainsKey(action))
+                if (!_prevFrameValues.ContainsKey(action))
                 {
                     _prevFrameValues.Add(action, 0);
                 }

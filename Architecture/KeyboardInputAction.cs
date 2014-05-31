@@ -3,15 +3,12 @@ using System.Windows.Input;
 
 namespace Architecture
 {
-    public class KeyboardInputAction: InputAction
+    public class KeyboardInputAction : InputAction
     {
-        private readonly Key _key;
-
         public delegate bool GetKeyPressStateDelegate(Key key);
-        private static GetKeyPressStateDelegate _getKeyPressState = (Key key) =>
-        {
-            return Keyboard.IsKeyDown(key);
-        };
+
+        private static GetKeyPressStateDelegate _getKeyPressState = (Key key) => { return Keyboard.IsKeyDown(key); };
+        private readonly Key _key;
 
         public KeyboardInputAction(Key key, GetKeyPressStateDelegate getKeyPressState = null)
         {
