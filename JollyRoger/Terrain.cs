@@ -44,7 +44,7 @@ namespace JollyRoger
             _texture = ShaderResourceView.FromFile(_device.Device, "../../texture.dds");
         }
 
-        public void Draw(Vector3 cameraLocation)
+        public void Draw(Matrix viewProjection)
         {
             //apply shader
             _shader.Apply();
@@ -56,10 +56,9 @@ namespace JollyRoger
             _device.DeviceContext.PixelShader.SetShaderResource(0, _texture);
 
             VoxelCount = 0;
-            float ratio = 800f / 600f;
-            Matrix projection = Matrix.PerspectiveFovLH(3.14F / 3.0F, ratio, 1, 1000);
+
             Matrix world = Matrix.Translation(0, 0, 0);
-            Matrix view = Matrix.LookAtLH(cameraLocation, new Vector3(_terrainWidth, 5, _terrainWidth), Vector3.UnitY);
+          
 
             for (int x = 0; x < _terrainWidth; x++)
             {
@@ -72,7 +71,7 @@ namespace JollyRoger
                             VoxelCount++;
                             var translation = new Vector3(x * 2f, y * 2f, z * 2f);
                             world = Matrix.Translation(translation);
-                            Matrix worldViewProjection = world * view * projection;
+                            Matrix worldViewProjection = world * viewProjection;
 
                             //set world view projection matrix inside constant buffer
                             _device.UpdateData<Matrix>(_buffer, worldViewProjection);

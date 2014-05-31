@@ -31,7 +31,7 @@ namespace JollyRoger
         {
             Resize();
             _messages = messages;
-        }
+        } 
 
         public void Draw()
         {
