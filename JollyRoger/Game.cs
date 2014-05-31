@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
+using Architecture;
 using Munq;
-using SharpDX.Direct3D11;
 using SharpDX.Windows;
 using SharpHelper;
 
@@ -15,7 +15,8 @@ namespace JollyRoger
         public void Run()
         {
             var container = Configure(new IocContainer());
-            
+            container.Resolve<InputModule>().RegisterKeybindings();
+
             _world = container.Resolve<World>();
             _started = true;
 
@@ -34,6 +35,14 @@ namespace JollyRoger
         {
             container.RegisterInstance(new RenderForm());
             container.RegisterInstance(new SharpDevice(container.Resolve<RenderForm>()));
+            container.RegisterInstance(new InputModule(new InputManager()));
+            container.Register<Camera>(r => new Camera(container.Resolve<SharpDevice>(), container.Resolve<InputModule>()));
+            container.Register<World>(
+                r =>
+                    new World(container.Resolve<SharpDevice>(), 
+                              container.Resolve<RenderForm>(),
+                              container.Resolve<HeadsUpDisplay>(), 
+                              container.Resolve<Camera>()));
 
             return container;
         }
@@ -52,6 +61,7 @@ namespace JollyRoger
             }
         }
 
+        [STAThread]
         private void UpdateLoop()
         {
             var now = DateTime.Now;

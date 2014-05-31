@@ -3,12 +3,12 @@ using SharpHelper;
 
 namespace JollyRoger
 {
-    public class HeadsUpDisplay 
+    public class HeadsUpDisplay
     {
+        private readonly SharpBatch _batch;
         private readonly SharpDevice _device;
         private readonly SharpFPS _fpsCounter;
-        private readonly SharpBatch _batch;
-        private string[] _messages= new string[0];
+        private string[] _messages = new string[0];
 
         public HeadsUpDisplay(SharpDevice device, SharpFPS fpsCounter)
         {
@@ -31,7 +31,7 @@ namespace JollyRoger
         {
             Resize();
             _messages = messages;
-        } 
+        }
 
         public void Draw()
         {
