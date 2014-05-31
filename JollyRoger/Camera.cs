@@ -115,7 +115,7 @@ namespace JollyRoger
             return new Vector3(RotationX, RotationY, RotationZ);
         }
 
-
+       
         public void Update()
         {
             var currentMousePosition = _inputModule.GetMousePosition();
