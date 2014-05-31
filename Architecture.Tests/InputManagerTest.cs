@@ -1,115 +1,101 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
-using SharpDX.XInput;
 using System.Windows.Input;
 
 namespace Architecture.Tests
 {
-
     [TestFixture]
     public class InputManagerTest
     {
-        readonly InputManager _im = new InputManager();
-        private bool _pressed;
-        private float _gamePadValue;
-        private GamepadButtonFlags _expectedFlag;
-        private int _expectedPlayerIndex;
-        private InputAction.GamePadValueActions _expectedGamePadKey;
-        private Key _expectedKey;
-        private bool _eventTest = false;
 
-        private bool ButtonPressOverride(GamepadButtonFlags flag, int playerIndex)
+        [Test]
+        public void when_a_GamPad_is_pressed_then_IsPressed_should_be_true()
         {
-            if (!_eventTest)
-            {
-                flag.ShouldBeEquivalentTo(_expectedFlag);
-                playerIndex.ShouldBeEquivalentTo(_expectedPlayerIndex);
-            }
-            return _pressed;
-        }
+            var inputManager = new InputManager(
+                getGamePadButtonPressOverride : (flag, playerIndex) => true,
+                getGamePadValueOverride : (key, playerIndex) => 0,
+                getKeyPressStateOverride : (key) => true
+            );
 
-        private float GamePadValueOverride(InputAction.GamePadValueActions key, int playerIndex)
-        {
-            if (!_eventTest)
-            {
-                key.ShouldBeEquivalentTo(_expectedGamePadKey);
-                playerIndex.ShouldBeEquivalentTo(_expectedPlayerIndex);
-            }
-            return _gamePadValue;
-        }
+            inputManager.RegisterNameToInputAction("Action", InputAction.GamePad_A);
 
-        private bool IsPressedKeyboardOverride(Key key)
-        {
-            if (!_eventTest)
-            {
-                key.ShouldBeEquivalentTo(_expectedKey);
-            }
-            return _pressed;
-        }
-
-        public InputManagerTest()
-        {
-            InputAction.GetGamePadButtonPressOverride = ButtonPressOverride;
-            InputAction.GetGamePadValueOverride = GamePadValueOverride;
-            KeyboardInputAction.IsPressedKeyboardOverride = IsPressedKeyboardOverride;
+            inputManager.IsPressed("Action").Should().BeTrue();
         }
 
         [Test]
-        public void IsGamePadPressedTest()
+        public void when_a_GamPad_is_pressed_then_the_value_should_be_as_expeceted()
         {
-            _pressed = true;
-            _expectedPlayerIndex = 0;
-            _expectedFlag = GamepadButtonFlags.A;
-            _im.RegisterNameToInputAction("Action1", InputAction.GamePad_A);
+            const float gamePadValue = 0.6f;
 
-            _im.IsPressed("Action1").ShouldBeEquivalentTo(true);
+            var inputManager = new InputManager(
+                getGamePadButtonPressOverride : (flag, playerIndex) => true,
+                getGamePadValueOverride : (key, playerIndex) => gamePadValue,
+                getKeyPressStateOverride : (key) => true
+          );
+
+            inputManager.RegisterNameToInputAction("Action", InputAction.GamePad_LeftTrigger);
+
+            inputManager.GetPressValue("Action").Should().Be(gamePadValue);
         }
 
         [Test]
-        public void GetPressedTest()
+        public void when_a_Keyboard_Key_is_pressed_then_IsPressed_should_be_true()
         {
-            _gamePadValue = 0.6f;
-            _expectedPlayerIndex = 0;
-            _expectedGamePadKey = InputAction.GamePadValueActions.LeftTrigger;
-            _im.RegisterNameToInputAction("Action2", InputAction.GamePad_LeftTrigger);
+            var inputManager = new InputManager(
+                getGamePadButtonPressOverride : (flag, playerIndex) => true,
+                getGamePadValueOverride : (key, playerIndex) => 0,
+                getKeyPressStateOverride : (key) => true
+           );
 
-            _im.GetPressValue("Action2").ShouldBeEquivalentTo(_gamePadValue);
+            inputManager.RegisterNameToInputAction("Action", inputManager.InputAction.Keys[Key.A]);
+
+            inputManager.IsPressed("Action").ShouldBeEquivalentTo(true);
         }
 
         [Test]
-        public void IsKeyboardPressedTest()
+        public void multiple_ActionNames_cannot_be_registered_to_the_same_InputAction()
         {
-            _pressed = true;
-            _expectedKey = Key.A;
-            _im.RegisterNameToInputAction("Action3", InputAction.Keys[Key.A]);
+            var inputManager = new InputManager(
+                getGamePadButtonPressOverride : (flag, playerIndex) => true,
+                getGamePadValueOverride : (key, playerIndex) => 0,
+                getKeyPressStateOverride : (key) => true
+        );
+            inputManager.RegisterNameToInputAction("SomeAction", inputManager.InputAction.Keys[Key.D1]);
 
-            _im.IsPressed("Action3").ShouldBeEquivalentTo(true);
+            Action registerSecondAction =
+                () => inputManager.RegisterNameToInputAction("anotherActionUsingTheSameKey", inputManager.InputAction.Keys[Key.D1]);
+
+            //TODO(PRUETT): im not sure argumentExcption is the intended behavior here. Robert is this the desired behavior? in my opinion this should 
+            // behave similar to IOC containers. the last registration in wins. dictionaries should support this AddOrUpdate style as well
+            registerSecondAction.ShouldThrow<ArgumentException>();
         }
 
         [Test]
-        public void KeyboardTriggerTest()
+        public void when_update_is_called_three_times_and_a_key_is_pressed_for_only_one_then_IsPressed_is_only_true_one_time()
         {
-            _eventTest = true;
-            _expectedKey = Key.A;
-            _im.RegisterNameToInputAction("Action4", InputAction.Keys[Key.A]);
-            int timesCalled = 0;
+            int updateCallCounter = 0;
 
-            _im.AddOnTriggerCallback("Action4", (index, name, value) =>
-            {
-                index.ShouldBeEquivalentTo(0);
-                name.ShouldAllBeEquivalentTo("Action4");
-                value.ShouldBeEquivalentTo(1.0f);
-                ++timesCalled;
-            });
+            var inputManager = new InputManager(
+                getGamePadButtonPressOverride : (flag, playerIndex) => true,
+                getGamePadValueOverride : (key, playerIndex) => 0,
+                getKeyPressStateOverride : (key) =>
+                {
+                    updateCallCounter++;
+                    return updateCallCounter == 2;
+                }
+           );
 
-            _pressed = false;
-            _im.Update(1);
-            _pressed = true;
-            _im.Update(1);
-            _pressed = false;
-            _im.Update(1);
+            inputManager.RegisterNameToInputAction("Action", inputManager.InputAction.Keys[Key.N]);
 
-            timesCalled.ShouldBeEquivalentTo(1);
+            //TODO(PRUETT): these assertions might not totally adress the concern here. but in my use case in not calling inputManager.Update
+            inputManager.IsPressed("Action").Should().BeFalse();
+    
+            inputManager.IsPressed("Action").Should().BeTrue();
+ 
+            inputManager.IsPressed("Action").Should().BeFalse();
+        
         }
+
     }
 }

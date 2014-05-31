@@ -55,7 +55,10 @@
     <Compile Include="Component.cs" />
     <Compile Include="GameModule.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="InputAction.cs" />
+    <Compile Include="InputEvent.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="KeyboardInputAction.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="LevelModule.cs" />

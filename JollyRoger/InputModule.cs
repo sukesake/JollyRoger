@@ -1,10 +1,7 @@
-using System;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Architecture;
 using SharpDX;
-using SharpDX.Windows;
-using SharpHelper;
 
 namespace JollyRoger
 {
@@ -56,12 +53,12 @@ namespace JollyRoger
         //TODO(PRUETT): this sort of redundant mapping can likely be done more eloquently via reflection and moved into Architecture itself
         public void RegisterKeybindings()
         {
-            _inputManager.RegisterNameToInputAction("MoveForward", InputAction.Keys[Key.W]);
-            _inputManager.RegisterNameToInputAction("MoveBackward", InputAction.Keys[Key.S]);
-            _inputManager.RegisterNameToInputAction("StrafeLeft", InputAction.Keys[Key.A]);
-            _inputManager.RegisterNameToInputAction("StrafeRight", InputAction.Keys[Key.D]);
-            _inputManager.RegisterNameToInputAction("EnableWireframe", InputAction.Keys[Key.D1]);
-            _inputManager.RegisterNameToInputAction("DisableWireframe", InputAction.Keys[Key.D2]);
+            _inputManager.RegisterNameToInputAction("MoveForward", _inputManager.InputAction.Keys[Key.W]);
+            _inputManager.RegisterNameToInputAction("MoveBackward", _inputManager.InputAction.Keys[Key.S]);
+            _inputManager.RegisterNameToInputAction("StrafeLeft", _inputManager.InputAction.Keys[Key.A]);
+            _inputManager.RegisterNameToInputAction("StrafeRight", _inputManager.InputAction.Keys[Key.D]);
+            _inputManager.RegisterNameToInputAction("EnableWireframe", _inputManager.InputAction.Keys[Key.D1]);
+            _inputManager.RegisterNameToInputAction("DisableWireframe", _inputManager.InputAction.Keys[Key.D2]);
         }
     }
 }
