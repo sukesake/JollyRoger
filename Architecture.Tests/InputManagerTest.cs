@@ -2,6 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using System.Windows.Input;
+using SharpDX.XInput;
 
 namespace Architecture.Tests
 {
@@ -48,7 +49,7 @@ namespace Architecture.Tests
                 getKeyPressStateOverride : (key) => true
            );
 
-            inputManager.RegisterNameToInputAction("Action", inputManager.InputAction.Keys[Key.A]);
+            inputManager.RegisterNameToInputAction("Action", InputAction.Keys[Key.A]);
 
             inputManager.IsPressed("Action").ShouldBeEquivalentTo(true);
         }
@@ -61,13 +62,14 @@ namespace Architecture.Tests
                 getGamePadValueOverride : (key, playerIndex) => 0,
                 getKeyPressStateOverride : (key) => true
         );
-            inputManager.RegisterNameToInputAction("SomeAction", inputManager.InputAction.Keys[Key.D1]);
+            inputManager.RegisterNameToInputAction("SomeAction", InputAction.Keys[Key.D1]);
 
             Action registerSecondAction =
-                () => inputManager.RegisterNameToInputAction("anotherActionUsingTheSameKey", inputManager.InputAction.Keys[Key.D1]);
+                () => inputManager.RegisterNameToInputAction("anotherActionUsingTheSameKey", InputAction.Keys[Key.D1]);
 
             //TODO(PRUETT): im not sure argumentExcption is the intended behavior here. Robert is this the desired behavior? in my opinion this should 
             // behave similar to IOC containers. the last registration in wins. dictionaries should support this AddOrUpdate style as well
+            // (Robert): I'm not a big fan of silent overrides.  I prefer big failures, or change the name of the function to reflect the potential override.
             registerSecondAction.ShouldThrow<ArgumentException>();
         }
 
@@ -86,7 +88,7 @@ namespace Architecture.Tests
                 }
            );
 
-            inputManager.RegisterNameToInputAction("Action", inputManager.InputAction.Keys[Key.N]);
+            inputManager.RegisterNameToInputAction("Action", InputAction.Keys[Key.N]);
 
             //TODO(PRUETT): these assertions might not totally adress the concern here. but in my use case in not calling inputManager.Update
             inputManager.IsPressed("Action").Should().BeFalse();
@@ -94,8 +96,74 @@ namespace Architecture.Tests
             inputManager.IsPressed("Action").Should().BeTrue();
  
             inputManager.IsPressed("Action").Should().BeFalse();
-        
         }
 
+        [Test]
+        public void when_update_has_a_gamepad_button_pressed_the_first_time_it_fires_the_triggered_event()
+        {
+            bool pressed = false;
+            var inputManager = new InputManager(
+                getGamePadButtonPressOverride: (flag, playerIndex) => pressed,
+                getGamePadValueOverride: (key, playerIndex) => 0,
+                getKeyPressStateOverride: (key) => false);
+
+            inputManager.RegisterNameToInputAction("Action", InputAction.GamePad_A);
+
+            int triggeredCallCounter = 0;
+            inputManager.AddOnTriggerCallback("Action", (index, name, value) => ++triggeredCallCounter);
+
+            inputManager.Update(1);
+            triggeredCallCounter.Should().Be(0);
+
+            pressed = true;
+            inputManager.Update(1);
+            triggeredCallCounter.Should().Be(1);
+
+            pressed = false;
+            inputManager.Update(1);
+            triggeredCallCounter.Should().Be(1);
+        }
+
+        [Test]
+        public void two_players_can_register_different_gamepad_buttons_for_the_same_action_name_and_get_the_correct_IsPressed_values()
+        {
+            int player1PressCount = 0;
+            int player2PressCount = 0;
+            var pressOverride = new InputAction.GamePadButtonPressDelegate((flag, playerIndex) =>
+            {
+                if (playerIndex == 0 && flag == GamepadButtonFlags.A)
+                {
+                    player1PressCount++;
+                    return true;
+                }
+                else if (playerIndex == 1 && flag == GamepadButtonFlags.B)
+                {
+                    player2PressCount++;
+                    return true;
+                }
+                return false;
+            });
+
+            var inputManager = new InputManager(
+                pressOverride,
+                getGamePadValueOverride: (key, playerIndex) => 0,
+                getKeyPressStateOverride: (key) => false);
+
+            inputManager.RegisterNameToInputAction("Action", InputAction.GamePad_A, 0);
+            inputManager.RegisterNameToInputAction("Action", InputAction.GamePad_B, 1);
+
+            inputManager.IsPressed("Action", 0).Should().BeTrue();
+            inputManager.IsPressed("Action", 1).Should().BeTrue();
+
+            player1PressCount.Should().Be(1);
+            player2PressCount.Should().Be(1);
+        }
+
+        //Todo: Two players can register the same action name to different keyboard keys and get the correct IsPressed values
+        //Todo: Two players can register for different OnTriggered gamepad buttons and each get called once
+        //Todo: OnTriggered works properly for Press value events (such as thumb sticks or triggers)
+        //Todo: Register/Unregister trigger works
+        //Todo: Registering two action names for the same player's input action results in last input action being used
+        //Todo: Two players register same action name for different keys, one OnTriggered event registers for that action and receives callbacks for both players
     }
 }

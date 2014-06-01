@@ -43,8 +43,8 @@ namespace Architecture
         private readonly InputManager.InputValueDelegate GetInputDelegate;
         private readonly GamePadButtonPressDelegate _getGamePadButtonPress;
         private readonly GamePadValueDelegate _getGamePadValue;
-        public Dictionary<Key, InputAction> Keys = new Dictionary<Key, InputAction>();
-        private InputManager _inputManager;
+        public static Dictionary<Key, InputAction> Keys = new Dictionary<Key, InputAction>();
+        private static InputManager _inputManager;
 
         public InputAction(InputManager.InputValueDelegate getInputDelegate = null,
             GamePadButtonPressDelegate getGamePadButtonPress = null,
@@ -106,34 +106,39 @@ namespace Architecture
         }
 
 
-        public void InitializeActions(InputManager inputManager,
-            KeyboardInputAction.GetKeyPressStateDelegate getKeyPressStateOverride = null)
+        public static void InitializeActions(InputManager inputManager,
+            KeyboardInputAction.GetKeyPressStateDelegate getKeyPressStateOverride,
+            GamePadButtonPressDelegate getGamePadButtonPressOverride,
+            GamePadValueDelegate getGamePadValueOverride
+            )
         {
             _inputManager = inputManager;
-            GamePad_A = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.A, index) ? 1 : 0);
-            GamePad_B = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.B, index) ? 1 : 0);
-            GamePad_Back = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.Back, index) ? 1 : 0);
-            GamePad_DPadDown = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.DPadDown, index) ? 1 : 0);
-            GamePad_DPadLeft = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.DPadLeft, index) ? 1 : 0);
-            GamePad_DPadRight = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.DPadRight, index) ? 1 : 0);
-            GamePad_DPadUp = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.DPadUp, index) ? 1 : 0);
+            GamePad_A = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.A, index) ? 1 : 0);
+            GamePad_B = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.B, index) ? 1 : 0);
+            GamePad_Back = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.Back, index) ? 1 : 0);
+            GamePad_DPadDown = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.DPadDown, index) ? 1 : 0);
+            GamePad_DPadLeft = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.DPadLeft, index) ? 1 : 0);
+            GamePad_DPadRight = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.DPadRight, index) ? 1 : 0);
+            GamePad_DPadUp = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.DPadUp, index) ? 1 : 0);
             GamePad_LeftShoulder =
-                new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.LeftShoulder, index) ? 1 : 0);
-            GamePad_LeftThumb = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.LeftThumb, index) ? 1 : 0);
+                new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.LeftShoulder, index) ? 1 : 0);
+            GamePad_LeftThumb = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.LeftThumb, index) ? 1 : 0);
             GamePad_RightShoulder =
-                new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.RightShoulder, index) ? 1 : 0);
+                new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.RightShoulder, index) ? 1 : 0);
             GamePad_RightThumb =
-                new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.RightThumb, index) ? 1 : 0);
-            GamePad_Start = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.Start, index) ? 1 : 0);
-            GamePad_X = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.X, index) ? 1 : 0);
-            GamePad_Y = new InputAction(index => _getGamePadButtonPress(GamepadButtonFlags.Y, index) ? 1 : 0);
-            GamePad_LeftThumbX = new InputAction(index => _getGamePadValue(GamePadValueActions.LeftThumbX, index));
-            GamePad_LeftThumbY = new InputAction(index => _getGamePadValue(GamePadValueActions.LeftThumbY, index));
-            GamePad_LeftTrigger = new InputAction(index => _getGamePadValue(GamePadValueActions.LeftTrigger, index));
-            GamePad_RightThumbX = new InputAction(index => _getGamePadValue(GamePadValueActions.RightThumbX, index));
-            GamePad_RightThumbY = new InputAction(index => _getGamePadValue(GamePadValueActions.RightThumbY, index));
-            GamePad_RightTrigger = new InputAction(index => _getGamePadValue(GamePadValueActions.RightTrigger, index));
+                new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.RightThumb, index) ? 1 : 0);
+            GamePad_Start = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.Start, index) ? 1 : 0);
+            GamePad_X = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.X, index) ? 1 : 0);
+            GamePad_Y = new InputAction(index => getGamePadButtonPressOverride(GamepadButtonFlags.Y, index) ? 1 : 0);
+            GamePad_LeftThumbX = new InputAction(index => getGamePadValueOverride(GamePadValueActions.LeftThumbX, index));
+            GamePad_LeftThumbY = new InputAction(index => getGamePadValueOverride(GamePadValueActions.LeftThumbY, index));
+            GamePad_LeftTrigger = new InputAction(index => getGamePadValueOverride(GamePadValueActions.LeftTrigger, index));
+            GamePad_RightThumbX = new InputAction(index => getGamePadValueOverride(GamePadValueActions.RightThumbX, index));
+            GamePad_RightThumbY = new InputAction(index => getGamePadValueOverride(GamePadValueActions.RightThumbY, index));
+            GamePad_RightTrigger = new InputAction(index => getGamePadValueOverride(GamePadValueActions.RightTrigger, index));
 
+            Keys.Clear();
+            
             for (var i = 0; i < (int) Key.DeadCharProcessed; i++)
             {
                 Keys.Add((Key) i, new KeyboardInputAction((Key) i, getKeyPressStateOverride));

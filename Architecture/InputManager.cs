@@ -6,24 +6,26 @@ namespace Architecture
 {
     public class InputManager : GameModule
     {
+        public static readonly int MaxPlayers = 4;
+
         public delegate void InputEventCallbackDelegate(int playerIndex, string actionName, float value);
 
         public delegate float InputValueDelegate(int playerIndex);
 
-        private readonly Dictionary<InputAction, string> _actionToName = new Dictionary<InputAction, string>();
+
+        private readonly Dictionary<InputAction, string>[] _actionToName = new Dictionary<InputAction, string>[MaxPlayers];
         private readonly List<InputAction> _allActions = new List<InputAction>();
 
-        private readonly List<Controller> _controllers = new List<Controller>();
-        private readonly Dictionary<string, InputEvent> _inputTriggerCallbacks = new Dictionary<string, InputEvent>();
-        private readonly Dictionary<string, InputAction> _nameToAction = new Dictionary<string, InputAction>();
-        private readonly Dictionary<InputAction, float> _prevFrameValues = new Dictionary<InputAction, float>();
+        private readonly Controller[] _controllers = new Controller[MaxPlayers];
+        private readonly Dictionary<string, InputEvent>[] _inputTriggerCallbacks = new Dictionary<string, InputEvent>[MaxPlayers];
+        private readonly Dictionary<string, InputAction>[] _nameToAction = new Dictionary<string, InputAction>[MaxPlayers];
+        private readonly Dictionary<InputAction, float>[] _prevFrameValues = new Dictionary<InputAction, float>[MaxPlayers];
 
         public InputManager(InputAction.GamePadButtonPressDelegate getGamePadButtonPressOverride = null,
             InputAction.GamePadValueDelegate getGamePadValueOverride = null,
             KeyboardInputAction.GetKeyPressStateDelegate getKeyPressStateOverride = null)
         {
-            InputAction = new InputAction(null, getGamePadButtonPressOverride, getGamePadValueOverride);
-            InputAction.InitializeActions(this, getKeyPressStateOverride);
+            InputAction.InitializeActions(this, getKeyPressStateOverride, getGamePadButtonPressOverride, getGamePadValueOverride);
 
             RegisterControllers();
             RegisterGamepadInputActions();
@@ -32,16 +34,22 @@ namespace Architecture
             {
                 _allActions.Add(pair.Value);
             }
-        }
 
-        public InputAction InputAction { get; private set; }
+            for (int i = 0; i < MaxPlayers; i++)
+            {
+                _actionToName[i] = new Dictionary<InputAction, string>();
+                _inputTriggerCallbacks[i] = new Dictionary<string, InputEvent>();
+                _nameToAction[i] = new Dictionary<string, InputAction>();
+                _prevFrameValues[i] = new Dictionary<InputAction, float>();
+            }
+        }
 
         private void RegisterControllers()
         {
-            _controllers.Add(new Controller(UserIndex.One));
-            _controllers.Add(new Controller(UserIndex.Two));
-            _controllers.Add(new Controller(UserIndex.Three));
-            _controllers.Add(new Controller(UserIndex.Four));
+            _controllers[0] = new Controller(UserIndex.One);
+            _controllers[1] = new Controller(UserIndex.Two);
+            _controllers[2] = new Controller(UserIndex.Three);
+            _controllers[3] = new Controller(UserIndex.Four);
         }
 
         private void RegisterGamepadInputActions()
@@ -68,64 +76,69 @@ namespace Architecture
             _allActions.Add(InputAction.GamePad_RightTrigger);
         }
 
-        public void RegisterNameToInputAction(string actionName, InputAction action)
+        public void RegisterNameToInputAction(string actionName, InputAction action, int playerIndex = 0)
         {
-            _nameToAction.Add(actionName, action);
-            _actionToName.Add(action, actionName);
-            _inputTriggerCallbacks.Add(actionName, new InputEvent());
+            //Todo: Verify valid playerIndex, how do we want to check this?  Assert?  No-op?
+
+            //Todo: Make this override previous registration, if present, instead of throwing
+            _nameToAction[playerIndex].Add(actionName, action);
+            _actionToName[playerIndex].Add(action, actionName);
+            _inputTriggerCallbacks[playerIndex].Add(actionName, new InputEvent());
         }
 
         public override void Update(float dt)
         {
-            foreach (var pair in _actionToName)
+            for (int i = 0; i < MaxPlayers; i++)
             {
-                var action = pair.Key;
-                var name = pair.Value;
-
-                var value = action.GetPressValue();
-                if (!_prevFrameValues.ContainsKey(action))
+                foreach (var pair in _actionToName[i])
                 {
-                    _prevFrameValues.Add(action, 0);
-                }
-                var prevValue = _prevFrameValues[action];
+                    var action = pair.Key;
+                    var name = pair.Value;
 
-                if (Math.Abs(value - prevValue) > 0.5)
-                {
-                    // Only do Player1 for now
-                    _inputTriggerCallbacks[name].Fire(0, name, value);
+                    var value = action.GetPressValue();
+                    if (!_prevFrameValues[i].ContainsKey(action))
+                    {
+                        _prevFrameValues[i].Add(action, 0);
+                    }
+                    var prevValue = _prevFrameValues[i][action];
+
+                    if (Math.Abs(value - prevValue) > 0.5)
+                    {
+                        _inputTriggerCallbacks[i][name].Fire(i, name, value);
+                    }
                 }
             }
         }
 
-        public void AddOnTriggerCallback(string actionName, InputEventCallbackDelegate callback)
+        public void AddOnTriggerCallback(string actionName, InputEventCallbackDelegate callback, int playerIndex = 0)
         {
-            _inputTriggerCallbacks[actionName].Event += callback;
+            // Todo: Verify playerIndex, and _inputTriggerCallbacks contains action
+            _inputTriggerCallbacks[playerIndex][actionName].Event += callback;
         }
 
-        public void RemoveOnTriggerCallback(string actionName, InputEventCallbackDelegate callback)
+        public void RemoveOnTriggerCallback(string actionName, InputEventCallbackDelegate callback, int playerIndex = 0)
         {
-            _inputTriggerCallbacks[actionName].Event -= callback;
+            // Todo: Verify playerIndex, and _inputTriggerCallbacks contains action
+            _inputTriggerCallbacks[playerIndex][actionName].Event -= callback;
         }
 
         public bool IsPressed(string actionName, int playerIndex = 0)
         {
-            if (_nameToAction.ContainsKey(actionName))
+            if (_nameToAction[playerIndex].ContainsKey(actionName))
             {
-                var action = _nameToAction[actionName];
+                var action = _nameToAction[playerIndex][actionName];
                 return action.IsPressed(playerIndex);
             }
-            // Throw maybe instead? no. using exceptions for control flow is bad juju
             return false;
         }
 
         public float GetPressValue(string actionName, int playerIndex = 0)
         {
-            if (_nameToAction.ContainsKey(actionName))
+            if (_nameToAction[playerIndex].ContainsKey(actionName))
             {
-                var action = _nameToAction[actionName];
+                var action = _nameToAction[playerIndex][actionName];
                 return action.GetPressValue(playerIndex);
             }
-            // Throw maybe instead?
             return 0;
         }
 
