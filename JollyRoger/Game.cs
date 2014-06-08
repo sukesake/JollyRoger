@@ -35,7 +35,7 @@ namespace JollyRoger
         {
             container.RegisterInstance(new RenderForm());
             container.RegisterInstance(new SharpDevice(container.Resolve<RenderForm>()));
-            container.RegisterInstance(new InputModule(new InputManager()));
+            container.RegisterInstance(new InputModule(new InputManager(), container.Resolve<RenderForm>()));
             container.Register<Camera>(r => new Camera(container.Resolve<SharpDevice>(), container.Resolve<InputModule>()));
             container.Register<World>(
                 r =>

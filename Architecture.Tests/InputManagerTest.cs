@@ -159,11 +159,18 @@ namespace Architecture.Tests
             player2PressCount.Should().Be(1);
         }
 
+        //TODO(PRUETT): what you can do here is write the basic tests and have them throw not implemented. this reminds you a lot better than comments.
+
         //Todo: Two players can register the same action name to different keyboard keys and get the correct IsPressed values
         //Todo: Two players can register for different OnTriggered gamepad buttons and each get called once
         //Todo: OnTriggered works properly for Press value events (such as thumb sticks or triggers)
-        //Todo: Register/Unregister trigger works
         //Todo: Registering two action names for the same player's input action results in last input action being used
         //Todo: Two players register same action name for different keys, one OnTriggered event registers for that action and receives callbacks for both players
+
+        [Test]
+        public void triggers_can_be_unregistered()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

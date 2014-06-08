@@ -46,7 +46,11 @@ namespace JollyRoger
         public void Update()
         {
             _camera.Update();
-            _headsUpDisplay.Update(new []{string.Format("Camera Location: {0}", _camera.GetPosition())});
+            _headsUpDisplay.Update(new []
+            {
+                string.Format("Camera Location: {0}", _camera.GetPosition()), 
+                string.Format("Camera Rotation: {0}", _camera.GetRotation())
+            });
             _terrain.Update();
         }
 

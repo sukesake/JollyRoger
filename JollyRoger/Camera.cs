@@ -1,5 +1,7 @@
+using System.Windows.Forms;
 using SharpDX;
 using SharpDX.Direct3D11;
+using SharpDX.DirectInput;
 using SharpHelper;
 
 namespace JollyRoger
@@ -21,6 +23,8 @@ namespace JollyRoger
             PositionX = 161;
             PositionY = 15;
             PositionZ = 89;
+
+
         }
 
         private float PositionX { get; set; }
@@ -95,8 +99,11 @@ namespace JollyRoger
         {
             GetInputUpdates();
             var currentMousePosition = _inputModule.GetMousePosition();
-            RotationY = currentMousePosition.X;
-            RotationX = currentMousePosition.Y;
+            var changeInMouse = currentMousePosition.Subtract(_lastKnownMousePosition);
+            
+            RotationY+=changeInMouse.X;
+            RotationX=0;
+           
             _lastKnownMousePosition = currentMousePosition;
 
             //// Setup the position of the camera in the world.

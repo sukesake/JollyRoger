@@ -1,23 +1,37 @@
 using System.Windows.Forms;
-using System.Windows.Input;
 using Architecture;
 using SharpDX;
+using SharpDX.DirectInput;
+using SharpDX.Windows;
+using Key = System.Windows.Input.Key;
 
 namespace JollyRoger
 {
     public class InputModule
     {
         private readonly InputManager _inputManager;
+        private Mouse _mouse;
+        private MouseState _mouseState;
+        private DirectInput _directInput;
 
-        public InputModule(InputManager inputManager)
+        public InputModule(InputManager inputManager, RenderForm renderForm)
         {
             _inputManager = inputManager;
+            _directInput = new DirectInput();
+            _mouse = new Mouse(_directInput);
+            _mouse.Properties.AxisMode =  DeviceAxisMode.Relative;
+            _mouse.SetCooperativeLevel(renderForm, CooperativeLevel.Foreground | CooperativeLevel.NonExclusive);
+
+            
         }
 
         public Point GetMousePosition()
         {
-            var position = Cursor.Position;
-            return new Point(position.X, position.Y);
+            _mouseState = new MouseState();
+
+             _mouse.GetCurrentState(ref _mouseState);
+             _mouse.Acquire();
+            return new Point(_mouseState.X, _mouseState.Y);
         }
 
         public bool MoveForward()
@@ -53,12 +67,12 @@ namespace JollyRoger
         //TODO(PRUETT): this sort of redundant mapping can likely be done more eloquently via reflection and moved into Architecture itself
         public void RegisterKeybindings()
         {
-            _inputManager.RegisterNameToInputAction("MoveForward", _inputManager.InputAction.Keys[Key.W]);
-            _inputManager.RegisterNameToInputAction("MoveBackward", _inputManager.InputAction.Keys[Key.S]);
-            _inputManager.RegisterNameToInputAction("StrafeLeft", _inputManager.InputAction.Keys[Key.A]);
-            _inputManager.RegisterNameToInputAction("StrafeRight", _inputManager.InputAction.Keys[Key.D]);
-            _inputManager.RegisterNameToInputAction("EnableWireframe", _inputManager.InputAction.Keys[Key.D1]);
-            _inputManager.RegisterNameToInputAction("DisableWireframe", _inputManager.InputAction.Keys[Key.D2]);
+            _inputManager.RegisterNameToInputAction("MoveForward", InputAction.Keys[Key.W]);
+            _inputManager.RegisterNameToInputAction("MoveBackward", InputAction.Keys[Key.S]);
+            _inputManager.RegisterNameToInputAction("StrafeLeft", InputAction.Keys[Key.A]);
+            _inputManager.RegisterNameToInputAction("StrafeRight", InputAction.Keys[Key.D]);
+            _inputManager.RegisterNameToInputAction("EnableWireframe", InputAction.Keys[Key.D1]);
+            _inputManager.RegisterNameToInputAction("DisableWireframe", InputAction.Keys[Key.D2]);
         }
     }
 }
