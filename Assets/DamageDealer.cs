@@ -26,7 +26,7 @@ public class DamageDealer : MonoBehaviour {
       
 		if(component != null)
 		{
-			component.TakeDamage(_rng.Next(9,200));
+			component.TakeDamage(_rng.Next(9,25));
 		}
 	}
 }

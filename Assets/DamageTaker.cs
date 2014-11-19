@@ -108,6 +108,12 @@ public class DamageTaker : MonoBehaviour
     {
         _damages.Enqueue(new Damage(damage));
         health -= damage;
+
+        if (health <= 0)
+        {
+            var dropper = this.GetComponent<LootDropper>();
+            dropper.DropLoot();
+        }
     }
 }
 

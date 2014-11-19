@@ -56,6 +56,8 @@
      <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\FireBall.cs" />
+     <Compile Include="Assets\LootCube.cs" />
+     <Compile Include="Assets\LootDropper.cs" />
      <Compile Include="Assets\SpellCaster.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
      <Compile Include="Assets\ThirdPersonController.cs" />
