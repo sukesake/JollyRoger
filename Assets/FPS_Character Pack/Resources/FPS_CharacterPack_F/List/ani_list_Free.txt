@@ -1,0 +1,5 @@
+Idle01
+Move01_F
+Move01_B
+Move01_L
+Move01_R

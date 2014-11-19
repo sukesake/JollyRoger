@@ -1,0 +1,2 @@
+weapon_gun01
+weapon_gun02

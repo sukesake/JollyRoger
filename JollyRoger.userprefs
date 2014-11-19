@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\GIT\JollyRoger\Assets\ThirdPersonController.cs">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" Line="73" Column="49" />
-      <File FileName="Assets\Player\Scripts\PlayerController.cs" Line="23" Column="3" />
+      <File FileName="..\GIT\JollyRoger\Assets\ThirdPersonCamera.cs" Line="174" Column="3" />
+      <File FileName="..\GIT\JollyRoger\Assets\ThirdPersonController.cs" Line="174" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
