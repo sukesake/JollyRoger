@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -155,7 +156,12 @@ public class ThirdPersonController : MonoBehaviour
             {
                 Debug.Log(string.Format("found a cube #{0}x{1}", lootCube.ItemNumber, lootCube.Quantity));
                 _inventory.Loot(lootCube.ItemNumber, lootCube.Quantity);
-                Destroy(lootCube.transform.gameObject);
+
+                lootCube.DoLootAnimation(transform);
+
+               // iTween.MoveTo(lootCube.transform.gameObject, transform.position, 3f);
+                //iTween.MoveTo(lootCube.transform.gameObject, new Hashtable());
+             //   Destroy(lootCube.transform.gameObject);
             }
         }
     }

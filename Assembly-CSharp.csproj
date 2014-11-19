@@ -58,12 +58,28 @@
      <Compile Include="Assets\FireBall.cs" />
      <Compile Include="Assets\LootCube.cs" />
      <Compile Include="Assets\LootDropper.cs" />
+     <Compile Include="Assets\QuickStart\QuickStartMainScriptCS.cs" />
+     <Compile Include="Assets\Samples\ClockArrowController.cs" />
+     <Compile Include="Assets\Samples\ExitButtonScript.cs" />
+     <Compile Include="Assets\Samples\LoadIndicatorScript.cs" />
+     <Compile Include="Assets\Samples\SampleFractal.cs" />
+     <Compile Include="Assets\Samples\SampleLayerSwitchOnClick.cs" />
      <Compile Include="Assets\SpellCaster.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
      <Compile Include="Assets\ThirdPersonController.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
+     <None Include="Assets\readme.txt" />
      <None Include="Assets\Demo\READ ME FIRST.txt" />
      <None Include="Assets\Elementals\!Readme.txt" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\BumpedDiffuseShader.shader" />
+ <Reference Include="blindGUI">
+ <HintPath>D:/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{34ED2938-796E-4E5E-FEDD-5559EC454C85}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

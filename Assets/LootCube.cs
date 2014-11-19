@@ -8,6 +8,8 @@ public class LootCube : MonoBehaviour
 
     public int MaxHorizontalSpread = 1;
     public int MaxVerticalHeight = 10;
+    private bool _looted;
+    private Transform _looter;
     public long ItemNumber { get; set; }
     public long Quantity { get; set; }
 
@@ -25,8 +27,27 @@ public class LootCube : MonoBehaviour
 	
 	}
 
+    void FixedUpdate()
+    {
+        if (_looted)
+        {
+            iTween.MoveUpdate(transform.gameObject, _looter.position, 1.5f);
+
+            if (Vector3.Distance (transform.position, _looter.position) < 1)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
+    }
+
     void Destroy()
     {
         Debug.Log("DEEEESTORY");
+    }
+
+    public void DoLootAnimation(Transform looter)
+    {
+        _looted = true;
+        _looter = looter;
     }
 }
