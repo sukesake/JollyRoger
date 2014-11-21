@@ -9,7 +9,11 @@ Project("{CDD24BF8-EFC3-815A-FEA2-A7561BD08897}") = "JollyRoger", "Assembly-CSha
 EndProject
 Project("{CDD24BF8-EFC3-815A-FEA2-A7561BD08897}") = "JollyRoger", "Assembly-Boo.booproj", "{CDD8D923-96D2-ED86-E69A-A5627D696866}"
 EndProject
+Project("{CDD24BF8-EFC3-815A-FEA2-A7561BD08897}") = "JollyRoger", "Assembly-Boo-Editor.booproj", "{11A546A2-FA93-6737-33C6-4B1D5C76A46B}"
+EndProject
 Project("{CDD24BF8-EFC3-815A-FEA2-A7561BD08897}") = "JollyRoger", "Assembly-UnityScript.unityproj", "{15C4BCDB-6BDC-83F9-276E-075086CB809B}"
+EndProject
+Project("{CDD24BF8-EFC3-815A-FEA2-A7561BD08897}") = "JollyRoger", "Assembly-UnityScript-Editor.unityproj", "{BBE5FA99-2914-449B-262E-89162F2820A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,15 +37,23 @@ Global
 		{CDD8D923-96D2-ED86-E69A-A5627D696866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD8D923-96D2-ED86-E69A-A5627D696866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDD8D923-96D2-ED86-E69A-A5627D696866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A546A2-FA93-6737-33C6-4B1D5C76A46B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A546A2-FA93-6737-33C6-4B1D5C76A46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A546A2-FA93-6737-33C6-4B1D5C76A46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A546A2-FA93-6737-33C6-4B1D5C76A46B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15C4BCDB-6BDC-83F9-276E-075086CB809B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15C4BCDB-6BDC-83F9-276E-075086CB809B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C4BCDB-6BDC-83F9-276E-075086CB809B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15C4BCDB-6BDC-83F9-276E-075086CB809B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE5FA99-2914-449B-262E-89162F2820A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE5FA99-2914-449B-262E-89162F2820A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE5FA99-2914-449B-262E-89162F2820A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE5FA99-2914-449B-262E-89162F2820A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																									GlobalSection(MonoDevelopProperties) = preSolution
+																																											GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
