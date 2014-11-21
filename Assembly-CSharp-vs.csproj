@@ -68,6 +68,7 @@
      <Compile Include="Assets\Samples\SampleLayerSwitchOnClick.cs" />
      <Compile Include="Assets\SpeechBubble.cs" />
      <Compile Include="Assets\SpellCaster.cs" />
+     <Compile Include="Assets\Targetable.cs" />
      <Compile Include="Assets\Targeter.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
      <Compile Include="Assets\ThirdPersonController.cs" />

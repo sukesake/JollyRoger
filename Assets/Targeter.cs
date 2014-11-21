@@ -3,7 +3,6 @@ using System.Linq;
 using UnityEngine;
 using System.Collections;
 
-
 public class Targeter : MonoBehaviour {
 
     private FireBall Bullet;
@@ -38,8 +37,15 @@ public class Targeter : MonoBehaviour {
             Debug.Log(string.Format("HIT: {0}", hitInfo.collider.gameObject.name));
             Vector3 origin = camera.transform.position;
             Debug.DrawRay(origin, ray.direction * Vector3.Distance(origin, hitInfo.point), Color.cyan, 2f);
-            _targetSelected = true;
-            _target = hitInfo.collider.gameObject;
+            if (hitInfo.collider.gameObject.GetComponent<Targetable>() != null)
+            {
+                _targetSelected = true;
+                _target = hitInfo.collider.gameObject;
+            }
+            else
+            {
+                _targetSelected = false;
+            }
             //  Debug.DrawLine(camera.transform.position, hitInfo.point, Color.green, 20f);
         }
 
@@ -53,7 +59,7 @@ public class Targeter : MonoBehaviour {
     void OnGUI()
     {
       
-        if (_targetSelected)
+        if (_targetSelected && _target != null)
         {
             useGUILayout = false;
             // We're not using GUILayout, so don't spend processing on it
@@ -100,11 +106,13 @@ public class Targeter : MonoBehaviour {
             GUI.skin = customSkin;
             // Set the custom skin. If no custom skin is set (null), Unity will use the default skin
 
-            string contents = string.Format("Name: {0} /n Race: Human /n Profession: Ass Kicking", _target.name);
+            string contents = " ";
 
             Vector2 size = GUI.skin.GetStyle(styleName).CalcSize(new GUIContent(contents));
             // Get the content size with the selected style
             var colliderWidth = Math.Max(_target.collider.bounds.size.x, _target.collider.bounds.size.z);
+
+       
 
             var topLeft = worldPosition;
             var bottomRight = worldPosition;
@@ -139,10 +147,15 @@ public class Targeter : MonoBehaviour {
                 topLeft.y,
             };
 
-            var left = horizontalVals.Min();
-            var top = verticalVals.Min();
-            var width = horizontalVals.Max() - horizontalVals.Min();
-            var height = verticalVals.Max() - verticalVals.Min();
+            var width = 0f; //horizontalVals.Max() - horizontalVals.Min();
+            var height = 0f;
+            FindWidthInScreen(_target, out width, out height);
+
+
+
+            var left = position.x - width / 2;  //horizontalVals.Min();
+            var top = position.y - height/2;
+          
             //var width = Math.Max(bottomRight.x - topLeft.x, bottomRight.z - topLeft.z);
             //width = Math.Max(width, topLeft.x - bottomRight.x);
             //width = Math.Max(width, topLeft.z - bottomRight.z);
@@ -156,7 +169,107 @@ public class Targeter : MonoBehaviour {
         // Draw the label with the selected style
     }
 
-    public void Update()
+    private void FindWidthInScreen(GameObject _TargetGameObject, out float width, out float height)
+    {
+        var xMin = new Vector2(Screen.width, 0);
+        var xMax = Vector2.zero;
+        var yMin = new Vector2(Screen.height, 0);
+        var    yMax = Vector2.zero;
+
+        for (var i = 0; i != 8; i++)
+        {
+            //FindBoundCord() locates the eight coordinates that forms the boundries, followed by converting the coordinates to screen space.
+            // The entire script starts in FindBoundCord
+
+            Vector2 _ObjectScreenCord = camera.WorldToScreenPoint(FindBoundCord(i, _TargetGameObject));
+
+            if (_ObjectScreenCord.x > xMax.x)
+            {
+                xMax.x = _ObjectScreenCord.x;
+            }
+            else if (_ObjectScreenCord.x < xMin.x)
+            {
+                xMin.x = _ObjectScreenCord.x;
+            }
+            if (_ObjectScreenCord.y > yMax.x)
+            {
+                yMax.x = _ObjectScreenCord.y;
+            }
+            else if (_ObjectScreenCord.y < yMin.x)
+            {
+                yMin.x = _ObjectScreenCord.y;
+            }
+
+        }
+
+        var targetHeight = Vector2.Distance(yMax, yMin);
+        if (targetHeight > Screen.height || targetHeight < 0)
+        {
+            targetHeight = 0;
+        }
+
+        var targetWidth = Vector2.Distance(xMax, xMin);
+        if (targetWidth > Screen.width || targetWidth < 0)
+        {
+            targetWidth = 0;
+        }
+
+        // Here we simply make a check on which of the height or the 
+        // width is the biggest. It was a necessary part for my project.
+        int minSize = 70;
+        height = Math.Max(targetHeight, minSize);
+        width = Math.Max(targetWidth, minSize);
+        /*
+        The method appears to work, though there are som serious issues when 
+        Screen coordinates gets into negative values.
+        When screencoordinates get negative the width/height 
+        explodes, and I think it is because of the 
+        Trapez formed viewport. */
+
+    }
+
+    private Vector3 FindBoundCord(int i, GameObject _GameObject)
+    {
+        /*This is basically where the code starts. It starts out by creating a 
+           * bounding box around the target GameObject. 
+          It calculates the 8 coordinates forming the bounding box, and 
+          returns them all to the for loop.
+          Because there are no real method which returns the coordinates 
+          from the bounding box I had to create a switch/case which utillized 
+          Bounds.center and Bounds.extents.*/
+
+        Bounds _TargetBounds = _GameObject.collider.bounds;
+        Vector3 _TargetCenter = _TargetBounds.center;
+        Vector3 _TargetExtents = _TargetBounds.extents;
+
+
+        switch (i)
+        {
+            case 0:
+                return _TargetCenter + new Vector3(_TargetExtents.x, _TargetExtents.y, _TargetExtents.z);
+            case 1:
+                return _TargetCenter + new Vector3(_TargetExtents.x, _TargetExtents.y, _TargetExtents.z*-1);
+            case 2:
+                return _TargetCenter + new Vector3(_TargetExtents.x, _TargetExtents.y*-1, _TargetExtents.z);
+            case 3:
+                return _TargetCenter + new Vector3(_TargetExtents.x, _TargetExtents.y*-1, _TargetExtents.z*-1);
+            case 4:
+                return _TargetCenter + new Vector3(_TargetExtents.x*-1, _TargetExtents.y, _TargetExtents.z);
+            case 5:
+                return _TargetCenter + new Vector3(_TargetExtents.x*-1, _TargetExtents.y, _TargetExtents.z*-1);
+            case 6:
+                return _TargetCenter + new Vector3(_TargetExtents.x*-1, _TargetExtents.y*-1, _TargetExtents.z);
+            case 7:
+                return _TargetCenter + new Vector3(_TargetExtents.x*-1, _TargetExtents.y*-1, _TargetExtents.z*-1);
+            default:
+                return Vector3.zero;
+        }
+
+    }
+
+
+    public
+        void Update()
     {
         // Fire if the left mouse button is clicked 
         if (Input.GetButtonDown("Target"))
