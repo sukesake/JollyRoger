@@ -64,7 +64,7 @@
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshColliderShader.shader" />
      <None Include="Assets\BumpedDiffuseShader.shader" />
  <Reference Include="blindGUI">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
+ <HintPath>D:/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
  </Reference>
  <Reference Include="RAIN">
  <HintPath>D:/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
