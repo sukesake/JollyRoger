@@ -7,6 +7,8 @@ public delegate void JumpDelegate();
 public class ThirdPersonController : MonoBehaviour
 {
     // Assign to this delegate to respond to the controller jumping
+    public int currentJumpCount = 0;
+    public int maxJumpCount = 2;
 
 
     private const float inputThreshold = 0.01f,
@@ -44,6 +46,7 @@ public class ThirdPersonController : MonoBehaviour
     public float walkSpeedDownscale = 2.0f;
 
     private bool walking;
+	private bool releasedJump = true;
 
 
     public bool Grounded
@@ -177,8 +180,18 @@ public class ThirdPersonController : MonoBehaviour
             groundLayers
             );
         // Shoot a ray downward to see if we're touching the ground
-
+		
         if (grounded)
+        {
+            currentJumpCount = 0;
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            releasedJump = true;
+        }
+
+		if (currentJumpCount < maxJumpCount && releasedJump)
         {
             target.drag = groundDrag;
             // Apply drag when we're grounded
@@ -186,6 +199,10 @@ public class ThirdPersonController : MonoBehaviour
             if (Input.GetButton("Jump"))
                 // Handle jumping
             {
+                if (currentJumpCount > 0)
+                {
+                    target.rigidbody.velocity = new Vector3(target.rigidbody.velocity.x, 0, target.rigidbody.velocity.z);
+                }
                 target.AddForce(
                     jumpSpeed*target.transform.up +
                     target.velocity.normalized*directionalJumpFactor,
@@ -198,6 +215,8 @@ public class ThirdPersonController : MonoBehaviour
                 {
                     onJump();
                 }
+                currentJumpCount++;
+                releasedJump = false;
             }
             else
                 // Only allow movement controls if we did not just jump
