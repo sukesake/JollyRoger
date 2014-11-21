@@ -53,6 +53,7 @@
      <Compile Include="Assets\Demo\Assets\AnimationController.cs" />
      <Compile Include="Assets\Demo\Assets\CloseCameraFade.cs" />
      <Compile Include="Assets\Demo\Assets\Label\Label.cs" />
+     <Compile Include="Assets\Demo\Assets\Label\Target.cs" />
      <Compile Include="Assets\Demo\Assets\SetupVerification.cs" />
      <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Samples\SampleLayerSwitchOnClick.cs" />
      <Compile Include="Assets\SpeechBubble.cs" />
      <Compile Include="Assets\SpellCaster.cs" />
+     <Compile Include="Assets\Targeter.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
      <Compile Include="Assets\ThirdPersonController.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
@@ -86,10 +88,10 @@
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshColliderShader.shader" />
      <None Include="Assets\BumpedDiffuseShader.shader" />
  <Reference Include="blindGUI">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
+ <HintPath>D:/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
  </Reference>
  <Reference Include="RAIN">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
+ <HintPath>D:/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
