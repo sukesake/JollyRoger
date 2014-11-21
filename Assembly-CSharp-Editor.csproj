@@ -51,15 +51,27 @@
      <Compile Include="Assets\Editor\ThirdPersonCameraEditor.cs" />
      <Compile Include="Assets\Editor\ThirdPersonControllerEditor.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
+     <None Include="Assets\readme.txt" />
      <None Include="Assets\Demo\READ ME FIRST.txt" />
      <None Include="Assets\Elementals\!Readme.txt" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\BumpedDiffuseShader.shader" />
+ <Reference Include="blindGUI">
+ <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{34ED2938-796E-4E5E-FEDD-5559EC454C85}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{833AD901-D7B5-6402-9D18-A7739C54FB0F}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-Boo.booproj">
+      <Project>{CDD8D923-96D2-ED86-E69A-A5627D696866}</Project>      <Name>Assembly-Boo</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.unityproj">
+      <Project>{15C4BCDB-6BDC-83F9-276E-075086CB809B}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
