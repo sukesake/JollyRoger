@@ -22,7 +22,11 @@ public class Targeter : MonoBehaviour {
     private bool _targetSelected;
     private GameObject _target;
     // Specifies at which angle to the camera forward vector, the label should no longer render
-   
+
+    public GameObject CurrentTarget
+    {
+        get { return _targetSelected ? _target: null; }
+    }
 
     // Fire a bullet 
     public void Target()

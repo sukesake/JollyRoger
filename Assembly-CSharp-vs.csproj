@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\AI\Actions\VikingAttack.cs" />
      <Compile Include="Assets\AI\Actions\WayPathLocation.cs" />
+     <Compile Include="Assets\Classer.cs" />
      <Compile Include="Assets\DamageDealer.cs" />
      <Compile Include="Assets\DamageTaker.cs" />
      <Compile Include="Assets\DamageText.cs" />
@@ -59,8 +60,11 @@
      <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\FireBall.cs" />
+     <Compile Include="Assets\InspectBubble.cs" />
      <Compile Include="Assets\LootCube.cs" />
      <Compile Include="Assets\LootDropper.cs" />
+     <Compile Include="Assets\Mooder.cs" />
+     <Compile Include="Assets\Professioner.cs" />
      <Compile Include="Assets\QuickStart\QuickStartMainScriptCS.cs" />
      <Compile Include="Assets\Samples\ClockArrowController.cs" />
      <Compile Include="Assets\Samples\ExitButtonScript.cs" />
@@ -70,6 +74,7 @@
      <Compile Include="Assets\SpeechBubble.cs" />
      <Compile Include="Assets\SpellCaster.cs" />
      <Compile Include="Assets\SpellCasterNpc.cs" />
+     <Compile Include="Assets\Statuser.cs" />
      <Compile Include="Assets\Targetable.cs" />
      <Compile Include="Assets\Targeter.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
