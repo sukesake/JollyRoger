@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AI\Actions\VikingAttack.cs" />
      <Compile Include="Assets\AI\Actions\WayPathLocation.cs" />
      <Compile Include="Assets\DamageDealer.cs" />
      <Compile Include="Assets\DamageTaker.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\Samples\SampleLayerSwitchOnClick.cs" />
      <Compile Include="Assets\SpeechBubble.cs" />
      <Compile Include="Assets\SpellCaster.cs" />
+     <Compile Include="Assets\SpellCasterNpc.cs" />
      <Compile Include="Assets\Targetable.cs" />
      <Compile Include="Assets\Targeter.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
