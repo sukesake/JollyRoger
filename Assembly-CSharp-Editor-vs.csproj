@@ -69,19 +69,19 @@
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshColliderShader.shader" />
      <None Include="Assets\BumpedDiffuseShader.shader" />
  <Reference Include="Assembly-Boo">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Library/ScriptAssemblies/Assembly-Boo.dll</HintPath>
+ <HintPath>D:/JollyRoger/Library/ScriptAssemblies/Assembly-Boo.dll</HintPath>
  </Reference>
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>D:/JollyRoger/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="blindGUI">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
+ <HintPath>D:/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
  </Reference>
  <Reference Include="RAIN">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
+ <HintPath>D:/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
  </Reference>
  <Reference Include="RAINEditor">
- <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/RAIN/Editor/RAINEditor.dll</HintPath>
+ <HintPath>D:/JollyRoger/Assets/RAIN/Editor/RAINEditor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
