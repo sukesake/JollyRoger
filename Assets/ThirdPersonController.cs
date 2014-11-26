@@ -191,7 +191,7 @@ public class ThirdPersonController : MonoBehaviour
             releasedJump = true;
         }
 
-		if (currentJumpCount < maxJumpCount && releasedJump)
+		if (grounded || (currentJumpCount < maxJumpCount && releasedJump))
         {
             target.drag = groundDrag;
             // Apply drag when we're grounded

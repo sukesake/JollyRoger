@@ -59,6 +59,7 @@
      <Compile Include="Assets\FireBall.cs" />
      <Compile Include="Assets\LootCube.cs" />
      <Compile Include="Assets\LootDropper.cs" />
+     <Compile Include="Assets\PlayerHUD.cs" />
      <Compile Include="Assets\QuickStart\QuickStartMainScriptCS.cs" />
      <Compile Include="Assets\Samples\ClockArrowController.cs" />
      <Compile Include="Assets\Samples\ExitButtonScript.cs" />
@@ -69,6 +70,7 @@
      <Compile Include="Assets\SpellCaster.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
      <Compile Include="Assets\ThirdPersonController.cs" />
+     <Compile Include="Assets\WindowIDManager.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
      <None Include="Assets\readme.txt" />

@@ -9,7 +9,9 @@ labels:
 - camera
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - skillBarSkin: {fileID: 11400000, guid: cb19949d1b9ba254a87989a18c8492cf, type: 2}
+  - target: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

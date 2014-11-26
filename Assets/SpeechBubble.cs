@@ -4,6 +4,7 @@ using System.Collections;
 public class SpeechBubble : MonoBehaviour 
 {
     private string characterName = "No Name";
+    private int windowID = WindowIDManager.GetWindowsID();
     public GUISkin mySkin;
 
 	// Use this for initialization
@@ -41,7 +42,7 @@ public class SpeechBubble : MonoBehaviour
         }
         if (show)
         {
-            windowRect = GUI.Window(0, windowRect, DialogWindow, characterName + ":");
+            windowRect = GUI.Window(windowID, windowRect, DialogWindow, characterName + ":");
         }
     }
 
