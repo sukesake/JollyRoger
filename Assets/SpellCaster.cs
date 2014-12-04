@@ -26,7 +26,20 @@ public class SpellCaster : MonoBehaviour
         // Fire if the left mouse button is clicked 
         if (Input.GetButtonDown("Fire1"))
         {
-            Fire();
+            PlayerCharacter playerCharacter = GetComponent<PlayerCharacter>();
+            if (playerCharacter != null)
+            {
+                if (playerCharacter.CurrentMana >= 10)
+                {
+                    playerCharacter.CurrentMana -= 10;
+                    Fire();
+                }
+            }
+            else
+            {
+                Fire();
+            }
+            
         }
     }
 }

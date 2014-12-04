@@ -64,6 +64,8 @@
      <Compile Include="Assets\LootCube.cs" />
      <Compile Include="Assets\LootDropper.cs" />
      <Compile Include="Assets\Mooder.cs" />
+     <Compile Include="Assets\PlayerCharacter.cs" />
+     <Compile Include="Assets\PlayerHUD.cs" />
      <Compile Include="Assets\Professioner.cs" />
      <Compile Include="Assets\QuickStart\QuickStartMainScriptCS.cs" />
      <Compile Include="Assets\Samples\ClockArrowController.cs" />
@@ -79,7 +81,7 @@
      <Compile Include="Assets\Targeter.cs" />
      <Compile Include="Assets\ThirdPersonCamera.cs" />
      <Compile Include="Assets\ThirdPersonController.cs" />
-     <Compile Include="Assets\PlayerHUD.cs" />
+     <Compile Include="Assets\Timer.cs" />
      <Compile Include="Assets\WindowIDManager.cs" />
      <None Include="Assets\Demo\Shaders\NewShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
@@ -98,10 +100,10 @@
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshColliderShader.shader" />
      <None Include="Assets\BumpedDiffuseShader.shader" />
  <Reference Include="blindGUI">
- <HintPath>D:/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
+ <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/Plugins/blindGUI.dll</HintPath>
  </Reference>
  <Reference Include="RAIN">
- <HintPath>D:/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
+ <HintPath>C:/Users/Chris/Documents/GitHub/JollyRoger/Assets/RAIN/RAIN.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
